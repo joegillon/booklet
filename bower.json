@@ -1,9 +1,8 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
+  "name": "cfir-booklet",
+  "description": "Create interview booklet for CFIR users",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
-  "license": "MIT",
+  "homepage": "https://github.com/joegillon/cfir-booklet",
   "private": true,
   "dependencies": {
     "angular": "1.2.x",

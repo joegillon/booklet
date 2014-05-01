@@ -2,10 +2,16 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
-  .controller('MyCtrl1', [function() {
+var bookletControllers = angular.module('bookletControllers', []);
 
-  }])
-  .controller('MyCtrl2', [function() {
+bookletControllers.controller('MyCtrl1',
+    function($scope) {
+        $scope.domains = domains;
+    }
+);
 
-  }]);
+bookletControllers.controller('MyCtrl2',
+    function($scope) {
+
+    }
+);

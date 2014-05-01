@@ -1,16 +1,17 @@
 {
-  "name": "angular-seed",
+  "name": "cfir-booklet",
   "private": true,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
-  "license": "MIT",
+  "description": "Create interview booklet for CFIR users",
+  "repository": "https://github.com/joegillon/cfir-booklet",
   "devDependencies": {
     "karma": "~0.10",
     "protractor": "~0.17.0",
     "http-server": "^0.6.1",
     "bower": "^1.3.1",
-    "shelljs": "^0.2.6"
+    "shelljs": "^0.2.6",
+    "grunt": "~0.4.3",
+    "grunt-contrib-watch": "~0.5.3"
   },
   "scripts": {
     "postinstall": "bower install",
