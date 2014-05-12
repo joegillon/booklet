@@ -14,6 +14,7 @@ module.exports = function(grunt) {
                 files: [
                     'app/js/*.js',
                     'app/css/*.css',
+                    'bower_components/bootstrap/dist/css/*.css',
                     'app/index.html',
                     'app/partials/*.html',
                     'app/data/*.js'
