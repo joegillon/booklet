@@ -13,9 +13,10 @@ module.exports = function(grunt) {
             scripts: {
                 files: [
                     'app/js/*.js',
-                    'css/*.css',
+                    'app/css/*.css',
                     'app/index.html',
-                    'app/partials/*.html'
+                    'app/partials/*.html',
+                    'app/data/*.js'
                 ],
                 options: {
                     livereload: 9090
