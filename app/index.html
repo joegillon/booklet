@@ -4,23 +4,45 @@
   <meta charset="utf-8">
   <title>CFIR Booklet</title>
   <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
+  <div class="masthead">
+    <table class="table">
+      <tr>
+        <td>
+          <img src="img/logo.png" />
+        </td>
+        <td>
+          <h3>Interview Guide</h3>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-  <div ng-view></div>
+  <div id="wrapper">
 
-  <div>CFIR Booklet app: v<span app-version></span></div>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav" ng-controller="MyCtrl1">
+        <li class="sidebar-brand"><a href="#/domain">Domains</a>
+        </li>
+        <li ng-repeat="domain in domains"><a ng-href="#/{{domain.slug}}">{{domain.name}}</a>
+        </li>
+      </ul>
+    </div>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+      <div ng-view></div>
+    </div>
+
+  </div>
+
   <script src="../bower_components/angular/angular.js"></script>
   <script src="../bower_components/angular-route/angular-route.js"></script>
-  <script src="../bower_components/jquery/dist/jquery.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>

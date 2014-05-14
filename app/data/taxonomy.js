@@ -1,10 +1,12 @@
 var domains = [
 	{
 		"name": "Intervention Characteristics",
+        "slug": "Intervention_Characteristics",
 		"description": "Key attributes of interventions influence the success of implementation.",
 		"constructs": [
 			{
 				"name": "Intervention Source",
+                "slug": "Intervention_Source",
 				"description": "Perception of key stakeholders about whether the intervention is externally or internally developed.",
 				"questions": [
                     {
@@ -18,12 +20,13 @@ var domains = [
                 ]
 			},
 			{
-				"name":"Evidence Strength & Quality",
+				"name": "Evidence Strength & Quality",
+                "slug": "Evidence_Strength",
 				"description": "Stakeholders’ perceptions of the quality and validity of evidence supporting the belief that the intervention will have desired outcomes.",
 				"questions" : [
 					{
 					    "number": "1B",
-					    "text":"What kind of information or evidence were you aware of that showed whether or not XXX would work?",
+					    "text": "What kind of information or evidence were you aware of that showed whether or not XXX would work?",
 					    "probes": [
 							"Information from your own research, consensus guidelines, published literature, or other sources? From co- workers? From supervisors?",
 							"To what degree did the evidence influence your perception of XXX?"
@@ -32,11 +35,13 @@ var domains = [
 				]
 			},
 			{
-				"name":"Relative Advantage",
+				"name": "Relative Advantage",
+                "slug": "Relative_Advantage",
 				"description": "Stakeholders’ perception of the advantage of implementing the intervention versus an alternative solution."
 			},
 			{
 				"name": "Adaptability",
+                "slug": "Adaptability",
 				"description": "The degree to which an intervention can be adapted, tailored, " +
 								"refined, or reinvented to meet local needs.",
 				"questions": [
@@ -55,12 +60,14 @@ var domains = [
         ]
     },
 	{
-		"name":"Inner Setting",
-		"description":"None available",
-		"constructs":[
+		"name": "Inner Setting",
+        "slug": "Inner_Setting",
+		"description": "None available",
+		"constructs": [
 			{
-				"Name": "Relative Priority",
-				"Description":"Individuals' shared perception of the importance of the implementation within the organization",
+				"name": "Relative Priority",
+                "slug": "Relative_Priority",
+				"description":"Individuals' shared perception of the importance of the implementation within the organization",
 				"questions": [
 				    {
 					    "number": "2A",

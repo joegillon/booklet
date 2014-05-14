@@ -15,3 +15,4 @@ bookletControllers.controller('MyCtrl2',
 
     }
 );
+

@@ -11,10 +11,12 @@ var bookletApp = angular.module('bookletApp', [
 
 bookletApp.config(['$routeProvider',
     function($routeProvider) {
+        $routeProvider.when('/', {templateUrl: 'partials/intro.html', controller: 'MyCtrl1'});
+        $routeProvider.when('/domain', {templateUrl: 'partials/domain.html', controller: 'MyCtrl1'});
         //noinspection JSCheckFunctionSignatures
         $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-        $routeProvider.otherwise({redirectTo: '/view1'});
+        $routeProvider.when('/Intervention_Characteristics', {templateUrl: 'partials/intervention_characteristics.html', controller: 'MyCtrl2'});
+        $routeProvider.otherwise({redirectTo: '/', controller: 'MyCtrl1'});
     }
 ]);
