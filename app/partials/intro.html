@@ -1,19 +1,38 @@
-This app will enable you to build your own customized
-interview guide. An interview has the followin structure:
-<p></p>
-<ul ng-controller="MyCtrl1">
-  <li>
-    The top level is the domain. There are currently
-    {{domains.length}} domains. To learn more click the
-    Domains link on the left.
-  </li>
-  <li>
-    Each domain is divided into constructs.
-  </li>
-  <li>
-    Each construct contains pertinent questions.
-  </li>
-  <li>
-    A question may or may not have probes.
-  </li>
-</ul>
+<div class="well">
+  This app will enable you to build your own customized
+  interview guide. An interview has the following structure:
+  <p></p>
+  <ul ng-controller="MyCtrl1">
+    <li>
+      The top level is the domain. There are currently
+      {{domains.length}} domains. To learn more click the
+      Domains link on the left.
+    </li>
+    <li>
+      Each domain is divided into constructs.
+    </li>
+    <li>
+      Each construct contains pertinent questions.
+    </li>
+    <li>
+      A question may or may not have probes.
+    </li>
+  </ul>
+  <h5>Theory of Operation</h5>
+  <ul>
+    <li>
+      Choose a domain
+    </li>
+    <li>
+      Choose the constructs you feel are pertinent
+    </li>
+    <li>
+      For each construct choose the questions you want included in your guide
+    </li>
+    <li>
+      Repeat until guide is complete
+    </li>
+  </ul>
+  When you are done you can download your guide as an editable Word
+  document.
+</div>
