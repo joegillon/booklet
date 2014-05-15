@@ -1,6 +1,5 @@
-var domains = [
-	{
-		"name": "Intervention Characteristics",
+var domains = {
+	"Intervention Characteristics": {
         "slug": "Intervention_Characteristics",
 		"description": "Key attributes of interventions influence the success of implementation.",
 		"constructs": [
@@ -59,8 +58,7 @@ var domains = [
             }
         ]
     },
-	{
-		"name": "Inner Setting",
+    "Inner Setting": {
         "slug": "Inner_Setting",
 		"description": "None available",
 		"constructs": [
@@ -87,4 +85,4 @@ var domains = [
 			}
 		]
 	}
-];
+};

@@ -29,7 +29,7 @@
       <ul class="sidebar-nav" ng-controller="MyCtrl1">
         <li class="sidebar-brand"><a href="#/domain">Domains</a>
         </li>
-        <li ng-repeat="domain in domains"><a ng-href="#/{{domain.slug}}">{{domain.name}}</a>
+        <li ng-repeat="(key, value) in domains"><a ng-href="#/{{value.slug}}">{{key}}</a>
         </li>
       </ul>
     </div>
