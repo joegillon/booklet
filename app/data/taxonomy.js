@@ -1,6 +1,6 @@
 var domains = {
-	"Intervention Characteristics": {
-        "slug": "Intervention_Characteristics",
+	"Intervention_Characteristics": {
+        "name": "Intervention Characteristics",
 		"description": "Key attributes of interventions influence the success of implementation.",
 		"constructs": [
 			{
@@ -58,8 +58,8 @@ var domains = {
             }
         ]
     },
-    "Inner Setting": {
-        "slug": "Inner_Setting",
+    "Inner_Setting": {
+        "name": "Inner Setting",
 		"description": "None available",
 		"constructs": [
 			{

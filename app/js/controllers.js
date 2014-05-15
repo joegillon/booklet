@@ -5,10 +5,10 @@
 var bookletControllers = angular.module('bookletControllers', []);
 
 bookletControllers.controller('MyCtrl1',
-    function($scope) {
+    function($scope, $routeParams) {
         $scope.domainsLength = Object.keys(domains).length;
         $scope.domains = domains;
-        $scope.intervention_characteristics = domains["Intervention Characteristics"];
+        $scope.selected_domain = domains[$routeParams.domain];
     }
 );
 

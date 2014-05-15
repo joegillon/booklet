@@ -1,6 +1,6 @@
 <div class="well" ng-controller="MyCtrl1">
-  <h4>Intervention Characteristics</h4>
-  {{domains["Intervention Characteristics"].description}}
+  <h4>{{selected_domain.name}}</h4>
+  {{selected_domain.description}}
   <p />
   <p>
     To learn more, see the
@@ -12,10 +12,10 @@
   <h4>Constructs</h4>
 
   <div class="panel-group" id="accordion" ng-controller="MyCtrl1">
-    <div class="panel panel-default" ng-repeat="construct in intervention_characteristics.constructs">
+    <div class="panel panel-default" ng-repeat="construct in selected_domain.constructs">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" ng-href="intervention_characteristics#{{construct.slug}}">{{construct.name}}</a>
+          <a data-toggle="collapse" data-parent="#accordion" ng-href="selected_domain#{{construct.slug}}">{{construct.name}}</a>
         </h4>
       </div>
       <div id="{{construct.slug}}" class="panel-collapse collapse">
