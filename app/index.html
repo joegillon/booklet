@@ -8,7 +8,7 @@
   <script src="../bower_components/jquery/dist/jquery.js"></script>
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
-<body>
+<body ng-controller="DomainsCtrl">
   <div class="masthead">
     <table class="table">
       <tr>
@@ -26,10 +26,14 @@
 
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-      <ul class="sidebar-nav" ng-controller="MyCtrl1">
+      <ul class="sidebar-nav">
         <li class="sidebar-brand"><a href="#/domain">Domains</a>
         </li>
-        <li ng-repeat="(key, value) in domains"><a ng-href="#/selected_domain/{{key}}">{{value.name}}</a>
+        <!--<li ng-repeat="(key, value) in domains | orderObjectBy: value.id">-->
+        <li ng-repeat="(key, value) in domains">
+          <a ng-href="#/selected_domain/{{key}}">
+            {{value.name}}
+          </a>
         </li>
       </ul>
     </div>

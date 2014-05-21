@@ -1,0 +1,16 @@
+<div class="panel panel-default" ng-controller="QuestionCtrl">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      {{selected_domain.name}}: {{selected_construct.name}}
+    </h4>
+  </div>
+  <div class="panel-body">
+    Deselect nonessential questions.
+    <ul>
+      <li ng-repeat="question in selected_construct.questions">
+        <input type="checkbox" ng-model="question.selected" />
+        {{question.text}}
+      </li>
+    </ul>
+  </div>
+</div>
