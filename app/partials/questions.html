@@ -5,12 +5,28 @@
     </h4>
   </div>
   <div class="panel-body">
-    Deselect nonessential questions.
-    <ul>
-      <li ng-repeat="question in selected_construct.questions">
-        <input type="checkbox" ng-model="question.selected" />
-        {{question.text}}
-      </li>
-    </ul>
+    Deselect nonessential questions. Click on question to see prompts.
+    <div class="panel-group" id="accordion" >
+      <div class="panel panel-default" ng-repeat="question in selected_construct.questions">
+        <div class="panel-heading">
+          <h6 class="panel-title">
+            <input type="checkbox" ng-model="question.selected" />
+            <a data-toggle="collapse" data-parent="#accordion"
+               ng-href="questions#{{question.number}}">
+              {{question.text}}
+            </a>
+          </h6>
+        </div>
+        <div id="{{question.number}}" class="panel-collapse collapse">
+          <div class="panel-body">
+            <ul>
+              <li ng-repeat="probe in question.probes">
+                {{probe}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
