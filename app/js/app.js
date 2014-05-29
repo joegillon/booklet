@@ -16,7 +16,10 @@ bookletApp.config(['$routeProvider',
         //noinspection JSCheckFunctionSignatures
         $routeProvider.when('/domain', {templateUrl: 'partials/domain.html'});
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.when('/selected_domain/:domain', {templateUrl: 'partials/selected_domain.html'});
+        $routeProvider.when('/selected_domain/:domain',
+            {
+                templateUrl: 'partials/selected_domain.html'
+            });
         //noinspection JSCheckFunctionSignatures
         $routeProvider.when('/questions/:construct', {templateUrl: 'partials/questions.html'});
         //noinspection JSCheckFunctionSignatures

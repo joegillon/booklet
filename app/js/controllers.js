@@ -22,7 +22,9 @@ bookletControllers.controller('SelectedDomainCtrl',
 bookletControllers.controller('QuestionCtrl',
     function($scope, $rootScope, $routeParams) {
         $scope.selected_domain = $rootScope.selected_domain;
-        $scope.selected_construct = $rootScope.selected_domain.constructs[$routeParams.construct];
-        $scope.selected_construct_key = $routeParams.construct;
+        if ($scope.selected_domain !== undefined) {
+            $scope.selected_construct = $rootScope.selected_domain.constructs[$routeParams.construct];
+            $scope.selected_construct_key = $routeParams.construct;
+        }
     }
 );

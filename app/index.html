@@ -27,14 +27,15 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
-        <li class="sidebar-brand"><a href="#/domain">Domains</a>
-        </li>
+        <li class="sidebar-brand"><a href="#/">Intro</a></li>
+        <li class="sidebar-brand"><a href="#/domain">Domains</a></li>
         <!--<li ng-repeat="(key, value) in domains | orderObjectBy: value.id">-->
-        <li ng-repeat="(key, value) in domains">
+        <li class="sidebar-item" ng-repeat="(key, value) in domains">
           <a ng-href="#/selected_domain/{{key}}">
             {{value.name}}
           </a>
         </li>
+        <li class="sidebar-brand"><a href="#/guide">Get Guide</a></li>
       </ul>
     </div>
 
