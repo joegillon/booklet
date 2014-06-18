@@ -23,6 +23,8 @@ bookletApp.config(['$routeProvider',
         //noinspection JSCheckFunctionSignatures
         $routeProvider.when('/questions/:construct', {templateUrl: 'partials/questions.html'});
         //noinspection JSCheckFunctionSignatures
+        $routeProvider.when('/guide', {templateUrl: 'partials/guide.html'});
+        //noinspection JSCheckFunctionSignatures
         $routeProvider.otherwise({redirectTo: '/'});
     }
 ]);
