@@ -30,8 +30,11 @@ bookletControllers.controller('QuestionCtrl',
 );
 
 bookletControllers.controller('GuideCtrl',
-    function($scope) {
-        $scope.guide = buildGuide(taxonomy);
+    function($scope, $cookieStore) {
+        $scope.saveGuide = function() {
+            $cookieStore.put("selections", taxonomy);
+        }
+        $scope.guide = buildGuide($cookieStore.get("selections"));
     }
 );
 

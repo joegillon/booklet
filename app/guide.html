@@ -8,42 +8,28 @@
   <script src="../bower_components/jquery/dist/jquery.js"></script>
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
-<body ng-controller="DomainsCtrl">
-  <div class="masthead">
-    <table class="table">
-      <tr>
-        <td>
-          <img src="img/logo.png" />
-        </td>
-        <td>
-          <h3>Interview Guide</h3>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <div id="wrapper">
-
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-      <ul class="sidebar-nav">
-        <li class="sidebar-brand"><a href="#/">Intro</a></li>
-        <li class="sidebar-brand"><a href="#/domain">Domains</a></li>
-        <!--<li ng-repeat="(key, value) in taxonomy | orderObjectBy: value.id">-->
-        <li class="sidebar-item" ng-repeat="(key, value) in domains">
-          <a ng-href="#/selected_domain/{{key}}">
-            {{value.name}}
-          </a>
-        </li>
-        <li class="sidebar-brand"><a href="#/guide">Get Guide</a></li>
-      </ul>
-    </div>
-
-    <!-- Page content -->
-    <div id="page-content-wrapper">
-      <div ng-view></div>
-    </div>
-
+<body ng-controller="GuideCtrl">
+  <div id="the_guide">
+    <span ng-repeat="(domainName, domain) in guide">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5>{{domain.name}}</h5>
+        </div>
+        <div class="panel-body" ng-repeat="(constructName, construct) in domain.constructs">
+          <h6><b>{{construct.name}}</b></h6>
+          <ol>
+            <li ng-repeat="question in construct.questions">
+              {{question.text}}
+              <ul>
+                <li ng-repeat="probe in question.probes">
+                  {{probe}}
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </span>
   </div>
 
   <script src="../bower_components/angular/angular.js"></script>
@@ -56,5 +42,6 @@
   <script src="js/directives.js"></script>
   <script src="data/taxonomy.js"></script>
   <script src="http://localhost:9090/livereload.js"></script>
+
 </body>
 </html>

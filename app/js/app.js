@@ -3,6 +3,7 @@
 // Declare app level module which depends on filters, and services
 var bookletApp = angular.module('bookletApp', [
   'ngRoute',
+  'ngCookies',
   'bookletFilters',
 //  'bookletServices',
 //  'bookletDirectives',
@@ -23,7 +24,7 @@ bookletApp.config(['$routeProvider',
         //noinspection JSCheckFunctionSignatures
         $routeProvider.when('/questions/:construct', {templateUrl: 'partials/questions.html'});
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.when('/guide', {templateUrl: 'partials/guide.html'});
+        $routeProvider.when('/guide', {templateUrl: 'partials/guide_howto.html'});
         //noinspection JSCheckFunctionSignatures
         $routeProvider.otherwise({redirectTo: '/'});
     }
