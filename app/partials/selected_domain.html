@@ -1,19 +1,25 @@
 <span ng-controller="SelectedDomainCtrl">
   <div class="well">
-    <h4>{{selected_domain.name}}</h4>
-    {{selected_domain.description}}
-    <p />
-    <p>
-      To learn more, see the
-      <a href="http://www.wiki.cf-ir.net/index.php?title={{selected_domain_key}}" target="_blank">wiki</a>
-    </p>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4>{{selected_domain.name}}</h4>
+      </div>
+      <div class="panel-body">
+        {{selected_domain.description}}
+        <p />
+        <p>
+          To learn more, see the
+          <a href="http://www.wiki.cf-ir.net/index.php?title={{selected_domain_key}}" target="_blank">wiki</a>
+        </p>
+      </div>
+    </div>
   </div>
 
   <div class="well">
     <h4>Constructs</h4>
 
     <div class="panel-group" id="accordion">
-      <div class="panel panel-default" ng-repeat="(key, value) in selected_domain.constructs">
+      <div class="panel panel-info" ng-repeat="(key, value) in selected_domain.constructs">
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" ng-href="selected_domain#{{key}}">{{value.name}}</a>

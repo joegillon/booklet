@@ -10,9 +10,9 @@ var taxonomy = {
 				"description": "Perception of key stakeholders about whether the intervention is externally or internally developed.",
 				"questions": {
                     "1_1_1": {
-                        "text": "How did your site become involved in XXX?",
+                        "text": "How did your site become involved in PROJECTX?",
                         "probes": [
-                            "How was the decision made to participate in XXX?",
+                            "How was the decision made to participate in PROJECTX?",
                             "Who participated in the decision-making process?"
                         ],
                         "selected": true
@@ -25,10 +25,10 @@ var taxonomy = {
 				"description": "Stakeholders’ perceptions of the quality and validity of evidence supporting the belief that the intervention will have desired outcomes.",
 				"questions" : {
 					"1_1_2": {
-					    "text": "What kind of information or evidence were you aware of that showed whether or not XXX would work?",
+					    "text": "What kind of information or evidence were you aware of that showed whether or not PROJECTX would work?",
 					    "probes": [
 							"Information from your own research, consensus guidelines, published literature, or other sources? From co- workers? From supervisors?",
-							"To what degree did the evidence influence your perception of XXX?"
+							"To what degree did the evidence influence your perception of PROJECTX?"
 					    ],
                         "selected": true
 				    }
@@ -71,14 +71,14 @@ var taxonomy = {
 				"description":"Individuals' shared perception of the importance of the implementation within the organization",
 				"questions": {
 				    "2_1_1": {
-					    "text": "How do you rank XXX' s priority with respect to other priorities in your department/unit/organization?",
+					    "text": "How do you rank PROJECTX' s priority with respect to other priorities in your department/unit/organization?",
 					    "probes": [
 						    "Can you describe the reason for your ranking?"
 					    ],
                         "selected": true
 				    },
 				    "2_1_2": {
-					    "text": "How do you think your colleagues rank XXX's priority with respect to other priorities in your department/unit/organization?",
+					    "text": "How do you think your colleagues rank PROJECTX's priority with respect to other priorities in your department/unit/organization?",
 					    "probes": [
 						    "Why is this your perception of your colleagues ranking?"
 					    ],

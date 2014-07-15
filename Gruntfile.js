@@ -1,10 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: Joe
- * Date: 4/30/14
- * Time: 10:45 AM
- */
-
 module.exports = function(grunt) {
 
     //noinspection JSUnresolvedFunction
@@ -14,7 +7,6 @@ module.exports = function(grunt) {
                 files: [
                     'app/js/*.js',
                     'app/css/*.css',
-                    'bower_components/bootstrap/dist/css/*.css',
                     'app/index.html',
                     'app/partials/*.html',
                     'app/data/*.js'

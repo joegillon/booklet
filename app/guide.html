@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>CFIR Booklet</title>
   <link rel="stylesheet" href="css/app.css"/>
-  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="css/bootstrap.css" />
   <script src="../bower_components/jquery/dist/jquery.js"></script>
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
@@ -16,7 +16,7 @@
           <h5>{{domain.name}}</h5>
         </div>
         <div class="panel-body" ng-repeat="(constructName, construct) in domain.constructs">
-          <h6><b>{{construct.name}}</b></h6>
+          <h6 class="panel-"><b>{{construct.name}}</b></h6>
           <ol>
             <li ng-repeat="question in construct.questions">
               {{question.text}}
