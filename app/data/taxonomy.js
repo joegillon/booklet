@@ -1,4 +1,4 @@
-var taxonomy = {
+var tax = {
 	"Intervention_Characteristics": {
         "id": 1,
         "name": "Intervention Characteristics",
