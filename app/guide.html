@@ -17,6 +17,9 @@
         </div>
         <div class="panel-body" ng-repeat="(constructName, construct) in domain.constructs">
           <h6 class="panel-primary"><b>{{construct.name}}</b></h6>
+          <ul ng-repeat="guideline in construct.guidelines">
+            <li>{{guideline}}</li>
+          </ul>
           <ol>
             <li ng-repeat="question in construct.questions">
               {{question.text}}

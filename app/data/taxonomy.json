@@ -17,7 +17,11 @@
                         ],
                         "selected": true
                     }
-                }
+                },
+                "guidelines": [
+                    "Guideline One",
+                    "Guideline Two"
+                ]
 			},
             "Evidence_Strength_Quality": {
                 "id": 2,

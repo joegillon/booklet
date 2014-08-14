@@ -55,7 +55,8 @@ bookletApp.controller('GuideCtrl',
                                         if (!(constructName in guide[domainName].constructs)) {
                                             guide[domainName].constructs[constructName] = {
                                                 'name': construct.name,
-                                                'questions': {}
+                                                'questions': {},
+                                                'guidelines': construct.guidelines
                                             };
                                         }
                                         guide[domainName].constructs[constructName].questions[questionNum] = question;
