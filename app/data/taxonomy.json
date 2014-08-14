@@ -1,4 +1,4 @@
-var tax = {
+{
 	"Intervention_Characteristics": {
         "id": 1,
         "name": "Intervention Characteristics",
@@ -42,8 +42,7 @@ var tax = {
             "Adaptability": {
                 "id": 4,
 				"name": "Adaptability",
-				"description": "The degree to which an intervention can be adapted, tailored, " +
-								"refined, or reinvented to meet local needs.",
+				"description": "The degree to which an intervention can be adapted, tailored, refined, or reinvented to meet local needs.",
 				"questions": {
 					"1_4_1": {
 						"text": "Did you feel you had enough flexibility (the ability to change aspects of the program to make it work) to implement the program in a way that would work best in your facility?",
@@ -88,4 +87,4 @@ var tax = {
 			}
         }
 	}
-};
+}
