@@ -9,19 +9,40 @@ var bookletApp = angular.module('bookletApp', [
 bookletApp.config(['$routeProvider',
     function($routeProvider) {
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.when('/', {templateUrl: 'partials/intro.html'});
+        $routeProvider.when('/',
+            {
+                templateUrl: 'partials/intro.html'
+            }
+        );
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.when('/domain', {templateUrl: 'partials/domain.html'});
+        $routeProvider.when('/domain',
+            {
+                templateUrl: 'partials/domain.html'
+            }
+        );
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.when('/selected_domain/:domain',
+        $routeProvider.when('/selected_domain/:domainIdx',
             {
                 templateUrl: 'partials/selected_domain.html'
-            });
+            }
+        );
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.when('/questions/:construct', {templateUrl: 'partials/questions.html'});
+        $routeProvider.when('/questions/:constructIdx',
+            {
+                templateUrl: 'partials/questions.html'
+            }
+        );
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.when('/guide', {templateUrl: 'partials/guide_howto.html'});
+        $routeProvider.when('/guide',
+            {
+                templateUrl: 'partials/guide_howto.html'
+            }
+        );
         //noinspection JSCheckFunctionSignatures
-        $routeProvider.otherwise({redirectTo: '/'});
+        $routeProvider.otherwise(
+            {
+                redirectTo: '/'
+            }
+        );
     }
 ]);

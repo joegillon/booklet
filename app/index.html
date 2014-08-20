@@ -1,4 +1,5 @@
 <!doctype html>
+<!--suppress ALL -->
 <html lang="en" ng-app="bookletApp">
 <head>
   <meta charset="utf-8">
@@ -29,10 +30,9 @@
       <ul class="sidebar-nav">
         <li class="sidebar-brand"><a href="#/">Intro</a></li>
         <li class="sidebar-brand"><a href="#/domain">Domains</a></li>
-        <!--<li ng-repeat="(key, value) in taxonomy | orderObjectBy: value.id">-->
-        <li class="sidebar-item" ng-repeat="(key, value) in domains">
-          <a ng-href="#/selected_domain/{{key}}">
-            {{value.name}}
+        <li class="sidebar-item" ng-repeat="(idx, domain) in domains">
+          <a ng-href="#/selected_domain/{{idx}}">
+            {{domain.name}}
           </a>
         </li>
         <li class="sidebar-brand"><a href="#/guide">Get Guide</a></li>
