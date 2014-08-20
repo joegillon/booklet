@@ -1,25 +1,24 @@
 'use strict';
 
 bookletApp.controller('DomainsCtrl',
-    function($scope, $rootScope, $http) {
-        $http.get('data/taxonomy.json').success(function(data) {
-            $rootScope.taxonomy = data;
-            $scope.domains = data;
-            $scope.domainsLength = $scope.domains.length;
-        });
+    function($scope, taxonomySvc) {
+        if (!taxonomySvc.isTaxonomyLoaded()) {
+            taxonomySvc.getTaxonomy();
+        }
+        $scope.domains = taxonomySvc.getDomains();
     }
 );
 
-bookletApp.controller('SelectedDomainCtrl',
-    function($scope, $rootScope, $routeParams) {
-        $scope.selected_domain_idx = $routeParams.domainIdx;
-        $scope.selected_domain = $rootScope.taxonomy[$scope.selected_domain_idx];
-        $rootScope.selected_domain = $scope.selected_domain;
-        $scope.domain_title = $scope.selected_domain.name.split(' ').join('_');
+bookletApp.controller('ConstructCtrl',
+    function($scope, $routeParams, taxonomySvc) {
+        var selected_domain_idx = $routeParams.domainIdx;
+        taxonomySvc.setSelectedDomain(selected_domain_idx);
+        var selected_domain = taxonomySvc.getSelectedDomain();
+        $scope.domain_title = taxonomySvc.getDomainTitle(selected_domain.name);
         $scope.construct_title = function(construct_name) {
-            construct_name = construct_name.split(' ').join('_');
-            return construct_name.split('&').join('%26');
-        }
+            return taxonomySvc.getConstructTitle(construct_name);
+        };
+        $scope.selected_domain = selected_domain;
     }
 );
 
