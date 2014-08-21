@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="bookletApp">
+<head>
+  <meta charset="utf-8">
+  <title>CFIR Booklet</title>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body ng-controller="GuideCtrl">
+  <div id="the_guide">
+    <span ng-repeat="(domainName, domain) in guide()">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h5>{{domain.name}}</h5>
+        </div>
+        <div class="panel-body" ng-repeat="(constructName, construct) in domain.constructs">
+          <h6 class="panel-primary"><b>{{construct.name}}</b></h6>
+          <ul ng-repeat="guideline in construct.guidelines">
+            <li>{{guideline}}</li>
+          </ul>
+          <ol>
+            <li ng-repeat="question in construct.questions">
+              {{question.text}}
+              <ul>
+                <li ng-repeat="probe in question.probes">
+                  {{probe}}
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </span>
+  </div>
+
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-route/angular-route.js"></script>
+  <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
+  <script src="http://localhost:9090/livereload.js"></script>
+
+</body>
+</html>

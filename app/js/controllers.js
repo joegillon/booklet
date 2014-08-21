@@ -36,15 +36,18 @@ bookletApp.controller('QuestionCtrl',
 );
 
 bookletApp.controller('GuideCtrl',
-    function($scope, $window, ngDialog, taxonomySvc) {
-        $scope.guide = taxonomySvc.buildGuide();
-        $scope.showGuide = function() {
-            // ngDialog.open({
-            //     template: 'theGuide.html',
-            //     className: 'ngdialog-theme-default',
-            //     scope: $scope
-            // });
-            $window.open('http://www.nhl.com');
+    function($scope, $cookieStore, taxonomySvc) {
+        $scope.saveGuide = function() {
+            var selections = taxonomySvc.getDomains();
+            //$cookieStore.put("selections", selections);
+            $cookieStore.put("selections", "fuck you");
         };
+
+        $scope.guide = function() {
+            console.log('guide');
+            var selections = $cookieStore.get('selections');
+            console.log(selections);
+            return taxonomySvc.buildGuide(selections);
+        }
     }
 );
