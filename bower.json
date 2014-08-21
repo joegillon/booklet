@@ -8,8 +8,7 @@
     "angular": "1.2.x",
     "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
-    "angular-mocks": "~1.2.15",
-    "angular-cookies": "~1.2.x",
+    "ngDialog": "~0.2.3",
     "bootstrap": "~3.1.1"
   }
 }

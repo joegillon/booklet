@@ -22,7 +22,10 @@
       <div class="panel panel-info" ng-repeat="(idx, construct) in selected_domain.constructs">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" ng-href="selected_domain#{{idx}}">{{construct.name}}</a>
+            <a data-toggle="collapse" data-parent="#accordion"
+               ng-href="selected_domain#{{idx}}" ng-click="setSelectedConstruct(idx)">
+              {{construct.name}}
+            </a>
           </h4>
         </div>
         <div id="{{idx}}" class="panel-collapse collapse">

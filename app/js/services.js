@@ -13,14 +13,18 @@ bookletApp.service("taxonomySvc", function($http) {
         });
     };
 
+    var setTaxonomy = function(data) {
+        _this.taxonomy = preselectQuestions(data);
+    };
+
     var preselectQuestions = function(data) {
         for (var domainIdx = 0; domainIdx < data.length; domainIdx++) {
             for (var constructIdx = 0;
                  constructIdx < data[domainIdx].constructs.length;
                  constructIdx++) {
-                for (var questionIdx = 0;
-                     questionIdx < data[domainIdx].constructs[constructIdx].questions.length;
-                     questionIdx++) {
+                var numQuestions = (data[domainIdx].constructs[constructIdx].questions === undefined) ?
+                        0 : data[domainIdx].constructs[constructIdx].questions.length;
+                for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
                     data[domainIdx].constructs[constructIdx].questions[questionIdx].selected = true;
                 }
             }
@@ -49,7 +53,7 @@ bookletApp.service("taxonomySvc", function($http) {
     };
 
     var getSelectedConstruct = function() {
-        return _this.selectedDomain[_this.selectedConstruct];
+        return _this.taxonomy[_this.selectedDomain].constructs[_this.selectedConstruct];
     };
 
     var getDomainTitle = function(domainName) {
@@ -61,8 +65,45 @@ bookletApp.service("taxonomySvc", function($http) {
         return constructName.split('&').join('%26');
     };
 
+    var buildGuide = function() {
+        var domains = getDomains();
+        var guide = {};
+        for (var domainName in domains) {
+            if (domains.hasOwnProperty(domainName)) {
+                var domain = domains[domainName];
+                for (var constructName in domain.constructs) {
+                    if (domain.constructs.hasOwnProperty(constructName)) {
+                        var construct = domain.constructs[constructName];
+                        for (var questionNum in construct.questions) {
+                            if (construct.questions.hasOwnProperty(questionNum)) {
+                                var question = construct.questions[questionNum];
+                                if (question.selected) {
+                                    if (!(domainName in guide)) {
+                                        guide[domainName] = {
+                                            'name': domain.name,
+                                            'constructs': {}
+                                        };
+                                    }
+                                    if (!(constructName in guide[domainName].constructs)) {
+                                        guide[domainName].constructs[constructName] = {
+                                            'name': construct.name,
+                                            'questions': {},
+                                            'guidelines': construct.guidelines
+                                        };
+                                    }
+                                    guide[domainName].constructs[constructName].questions[questionNum] = question;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return guide;
+    };
+
     return {
-        getTaxonomy: getTaxonomy,
+        setTaxonomy: setTaxonomy,
         isTaxonomyLoaded: isTaxonomyLoaded,
         getDomains: getDomains,
         setSelectedDomain: setSelectedDomain,
@@ -70,6 +111,7 @@ bookletApp.service("taxonomySvc", function($http) {
         setSelectedConstruct: setSelectedConstruct,
         getSelectedConstruct: getSelectedConstruct,
         getDomainTitle: getDomainTitle,
-        getConstructTitle: getConstructTitle
+        getConstructTitle: getConstructTitle,
+        buildGuide: buildGuide
     }
 });

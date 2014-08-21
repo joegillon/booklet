@@ -3,7 +3,7 @@
 // Declare app level module which depends on filters, and services
 var bookletApp = angular.module('bookletApp', [
   'ngRoute',
-  'ngCookies'
+  'ngDialog'
 ]);
 
 bookletApp.config(['$routeProvider',
@@ -17,13 +17,13 @@ bookletApp.config(['$routeProvider',
         //noinspection JSCheckFunctionSignatures
         $routeProvider.when('/domain',
             {
-                templateUrl: 'partials/domain.html'
+                templateUrl: 'partials/domains.html'
             }
         );
         //noinspection JSCheckFunctionSignatures
         $routeProvider.when('/selected_domain/:domainIdx',
             {
-                templateUrl: 'partials/selected_domain.html'
+                templateUrl: 'partials/constructs.html'
             }
         );
         //noinspection JSCheckFunctionSignatures
@@ -35,7 +35,7 @@ bookletApp.config(['$routeProvider',
         //noinspection JSCheckFunctionSignatures
         $routeProvider.when('/guide',
             {
-                templateUrl: 'partials/guide_howto.html'
+                templateUrl: 'partials/guide.html'
             }
         );
         //noinspection JSCheckFunctionSignatures
