@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
 
     //noinspection JSUnresolvedFunction
@@ -7,7 +9,7 @@ module.exports = function(grunt) {
                 files: [
                     'app/js/*.js',
                     'app/css/*.css',
-                    'app/index.html',
+                    'app/*.html',
                     'app/partials/*.html',
                     'app/data/*.js'
                 ],
@@ -20,4 +22,4 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('default', []);
-}
+};

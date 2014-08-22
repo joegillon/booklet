@@ -1,15 +1,13 @@
 'use strict';
 
 bookletApp.controller('DomainsCtrl',
-    function($scope, $http, taxonomySvc) {
-        $http.get('data/taxonomy.json').success(function(data) {
-            taxonomySvc.setTaxonomy(data);
-            $scope.domains = taxonomySvc.getDomains();
-        });
+    function($scope, taxonomySvc) {
+        taxonomySvc.setTaxonomy(theTaxonomy);
+        $scope.domains = taxonomySvc.getDomains();
 
         $scope.setSelectedDomain = function(idx) {
             taxonomySvc.setSelectedDomain(idx);
-        }
+        };
     }
 );
 
@@ -24,7 +22,7 @@ bookletApp.controller('ConstructCtrl',
 
         $scope.setSelectedConstruct = function(idx) {
             taxonomySvc.setSelectedConstruct(idx);
-        }
+        };
     }
 );
 
@@ -38,16 +36,17 @@ bookletApp.controller('QuestionCtrl',
 bookletApp.controller('GuideCtrl',
     function($scope, $cookieStore, taxonomySvc) {
         $scope.saveGuide = function() {
-            var selections = taxonomySvc.getDomains();
-            //$cookieStore.put("selections", selections);
-            $cookieStore.put("selections", "fuck you");
+            var deselections = taxonomySvc.getDeselectedQuestions();
+            if (deselections.length > 0) {
+                $cookieStore.put("deselections", deselections);
+            }
         };
 
         $scope.guide = function() {
-            console.log('guide');
-            var selections = $cookieStore.get('selections');
-            console.log(selections);
-            return taxonomySvc.buildGuide(selections);
-        }
+            taxonomySvc.setTaxonomy(theTaxonomy);
+            var deselections = $cookieStore.get('deselections');
+            $cookieStore.remove('deselections');
+            return taxonomySvc.getGuide(deselections);
+        };
     }
 );

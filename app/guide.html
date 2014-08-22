@@ -9,19 +9,41 @@
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 <body ng-controller="GuideCtrl">
+  <div class="masthead">
+    <table class="table">
+      <tr>
+        <td>
+          <img src="img/logo.png" />
+        </td>
+        <td>
+          <h3>Interview Guide</h3>
+        </td>
+      </tr>
+    </table>
+  </div>
+
   <div id="the_guide">
-    <span ng-repeat="(domainName, domain) in guide()">
+    <span ng-repeat="domain in guide()">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h5>{{domain.name}}</h5>
         </div>
-        <div class="panel-body" ng-repeat="(constructName, construct) in domain.constructs">
+        <div class="panel-body" ng-repeat="construct in domain.constructs">
           <h6 class="panel-primary"><b>{{construct.name}}</b></h6>
+          <p><i>{{construct.intro}}</i></p>
           <ul ng-repeat="guideline in construct.guidelines">
-            <li>{{guideline}}</li>
+            <li>
+              <i>
+                <span ng-if="guideline.title">{{guideline.title}}:<br></span>
+                {{guideline.text}}
+              </i>
+            </li>
           </ul>
           <ol>
             <li ng-repeat="question in construct.questions">
+              <p ng-repeat="guideline in question.guidelines">
+                <i>{{guideline.text}}</i>
+              </p>
               {{question.text}}
               <ul>
                 <li ng-repeat="probe in question.probes">
@@ -41,6 +63,7 @@
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/services.js"></script>
+  <script src="data/taxonomy.js"></script>
   <script src="http://localhost:9090/livereload.js"></script>
 
 </body>

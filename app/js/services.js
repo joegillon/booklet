@@ -9,23 +9,27 @@ bookletApp.service("taxonomySvc", function($http) {
 
     var getTaxonomy = function() {
         $http.get('data/taxonomy.json').success(function(data) {
-            _this.taxonomy = preselectQuestions(data);
+            _this.taxonomy = addQuestionProperties(data);
         });
     };
 
     var setTaxonomy = function(data) {
-        _this.taxonomy = preselectQuestions(data);
+        _this.taxonomy = addQuestionProperties(data);
     };
 
-    var preselectQuestions = function(data) {
+    var addQuestionProperties = function(data) {
         for (var domainIdx = 0; domainIdx < data.length; domainIdx++) {
-            for (var constructIdx = 0;
-                 constructIdx < data[domainIdx].constructs.length;
-                 constructIdx++) {
-                var numQuestions = (data[domainIdx].constructs[constructIdx].questions === undefined) ?
-                        0 : data[domainIdx].constructs[constructIdx].questions.length;
+            var domain = data[domainIdx];
+            for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
+                var construct = domain.constructs[constructIdx];
+                var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
                 for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
-                    data[domainIdx].constructs[constructIdx].questions[questionIdx].selected = true;
+                    var question = construct.questions[questionIdx];
+                    var ref = domainIdx.toString() + '_' + 
+                              constructIdx.toString() + '_' +
+                              questionIdx.toString(); 
+                    question.ref = ref;
+                    question.selected = true;
                 }
             }
         }
@@ -65,37 +69,42 @@ bookletApp.service("taxonomySvc", function($http) {
         return constructName.split('&').join('%26');
     };
 
-    var buildGuide = function() {
+    var getDeselectedQuestions = function() {
+        var result = [];
         var domains = getDomains();
-        var guide = {};
-        for (var domainName in domains) {
-            if (domains.hasOwnProperty(domainName)) {
-                var domain = domains[domainName];
-                for (var constructName in domain.constructs) {
-                    if (domain.constructs.hasOwnProperty(constructName)) {
-                        var construct = domain.constructs[constructName];
-                        for (var questionNum in construct.questions) {
-                            if (construct.questions.hasOwnProperty(questionNum)) {
-                                var question = construct.questions[questionNum];
-                                if (question.selected) {
-                                    if (!(domainName in guide)) {
-                                        guide[domainName] = {
-                                            'name': domain.name,
-                                            'constructs': {}
-                                        };
-                                    }
-                                    if (!(constructName in guide[domainName].constructs)) {
-                                        guide[domainName].constructs[constructName] = {
-                                            'name': construct.name,
-                                            'questions': {},
-                                            'guidelines': construct.guidelines
-                                        };
-                                    }
-                                    guide[domainName].constructs[constructName].questions[questionNum] = question;
-                                }
-                            }
-                        }
+        for (var domainIdx = 0; domainIdx < domains.length; domainIdx++) {
+            var domain = domains[domainIdx];
+            for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
+                var construct = domain.constructs[constructIdx];
+                var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
+                for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
+                    var question = construct.questions[questionIdx];
+                    if (!question.selected) {
+                        result.push(question.ref);
                     }
+                }
+            }
+        }
+        return result;
+    };
+
+    var getGuide = function(deselections) {
+        var guide = getDomains();
+        if (deselections === undefined || deselections.length === 0) {
+            return guide;
+        }
+        for (var domainIdx = 0; domainIdx < guide.length; domainIdx++) {
+            var domain = guide[domainIdx];
+            for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
+                var construct = domain.constructs[constructIdx];
+                var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
+                for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
+                    var question = construct.questions[questionIdx];
+
+                    // Remove deselected questions
+                    if (deselections.indexOf(question.ref) > -1 ) {
+                        construct.questions.splice(questionIdx, 1);
+                    } 
                 }
             }
         }
@@ -112,6 +121,7 @@ bookletApp.service("taxonomySvc", function($http) {
         getSelectedConstruct: getSelectedConstruct,
         getDomainTitle: getDomainTitle,
         getConstructTitle: getConstructTitle,
-        buildGuide: buildGuide
-    }
+        getDeselectedQuestions: getDeselectedQuestions,
+        getGuide: getGuide
+    };
 });
