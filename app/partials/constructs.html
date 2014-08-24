@@ -2,14 +2,16 @@
   <div class="well">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h4>{{selected_domain.name}}</h4>
+        <h4>{{selectedDomain.name}}</h4>
       </div>
       <div class="panel-body">
-        {{selected_domain.description}}
+        {{selectedDomain.description}}
         <p>
+        <p>
+        <input type="checkbox" ng-click="chooseDomain()">&nbsp;&nbsp;Choose ALL constructs and questions.
         <p>
           To learn more, see the
-          <a href="http://cfirwiki.net/wiki/index.php?title={{domain_title}}" target="_blank">wiki</a>
+          <a href="http://cfirwiki.net/wiki/index.php?title={{domainTitle}}" target="_blank">wiki</a>
         </p>
       </div>
     </div>
@@ -19,11 +21,11 @@
     <h4>Constructs</h4>
 
     <div class="panel-group" id="accordion">
-      <div class="panel panel-info" ng-repeat="(idx, construct) in selected_domain.constructs">
+      <div class="panel panel-info" ng-repeat="(idx, construct) in selectedDomain.constructs">
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion"
-               ng-href="selected_domain#{{idx}}" ng-click="setSelectedConstruct(idx)">
+               ng-href="selectedDomain#{{idx}}" ng-click="setSelectedConstruct(idx)">
               {{construct.name}}
             </a>
           </h4>
@@ -33,8 +35,10 @@
             {{construct.description}}
             <p>
             <p>
+            <input type="checkbox" ng-click="chooseConstruct(idx)">&nbsp;&nbsp;Choose ALL questions.
+            <p>
               To learn more see the
-              <a ng-href="http://cfirwiki.net/wiki/index.php?title={{construct_title(construct.name)}}"
+              <a ng-href="http://cfirwiki.net/wiki/index.php?title={{constructTitle(construct.name)}}"
                   target="_blank">wiki</a>.
             </p>
             <p>

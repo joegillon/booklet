@@ -22,8 +22,10 @@ bookletApp.service("taxonomySvc", function($http) {
     var addQuestionProperties = function(data) {
         for (var domainIdx = 0; domainIdx < data.length; domainIdx++) {
             var domain = data[domainIdx];
+            domain.selected = false;
             for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
                 var construct = domain.constructs[constructIdx];
+                construct.selected = false;
                 var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
                 for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
                     var question = construct.questions[questionIdx];
@@ -31,7 +33,7 @@ bookletApp.service("taxonomySvc", function($http) {
                               constructIdx.toString() + '_' +
                               questionIdx.toString(); 
                     question.ref = ref;
-                    question.selected = true;
+                    question.selected = false;
                 }
             }
         }
@@ -48,6 +50,10 @@ bookletApp.service("taxonomySvc", function($http) {
 
     var setSelectedDomain = function(idx) {
         _this.selectedDomain = idx;
+    };
+
+    var getSelectedDomainIdx = function() {
+        return _this.selectedDomain;
     };
 
     var getSelectedDomain = function() {
@@ -71,7 +77,23 @@ bookletApp.service("taxonomySvc", function($http) {
         return constructName.split('&').join('%26');
     };
 
-    var getDeselectedQuestions = function() {
+    var chooseConstruct = function(domainIdx, constructIdx) {
+        var construct = _this.taxonomy[domainIdx].constructs[constructIdx];
+        var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
+        for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
+            var question = construct.questions[questionIdx];
+            question.selected = true;
+        }
+    };
+
+    var chooseDomain = function(domainIdx) {
+        var domain = _this.taxonomy[domainIdx];
+        for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
+            chooseConstruct(domainIdx, constructIdx);
+        }
+    };
+
+    var getSelectedQuestions = function() {
         var result = [];
         var domains = getDomains();
         for (var domainIdx = 0; domainIdx < domains.length; domainIdx++) {
@@ -81,7 +103,7 @@ bookletApp.service("taxonomySvc", function($http) {
                 var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
                 for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
                     var question = construct.questions[questionIdx];
-                    if (!question.selected) {
+                    if (question.selected) {
                         result.push(question.ref);
                     }
                 }
@@ -90,25 +112,27 @@ bookletApp.service("taxonomySvc", function($http) {
         return result;
     };
 
-    var getGuide = function(deselections) {
-        var guide = getDomains();
-        if (deselections === undefined || deselections.length === 0) {
-            return guide;
+    var getGuide = function(selections) {
+        if (selections === undefined || selections.length === 0) {
+            return {};
         }
-        for (var domainIdx = 0; domainIdx < guide.length; domainIdx++) {
-            var domain = guide[domainIdx];
-            for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
-                var construct = domain.constructs[constructIdx];
-                var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
-                for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
-                    var question = construct.questions[questionIdx];
+        var guide = _this.taxonomy;
 
-                    // Remove deselected questions
-                    if (deselections.indexOf(question.ref) > -1 ) {
-                        construct.questions.splice(questionIdx, 1);
-                    } 
-                }
-            }
+        for (var idx = 0; idx < selections.length; idx++) {
+
+            var indexes = selections[idx].split('_');
+            var domainIdx = parseInt(indexes[0]);
+            var constructIdx = parseInt(indexes[1]);
+            var questionIdx = parseInt(indexes[2]);
+
+            var domain = guide[domainIdx];
+            domain.selected = true;
+
+            var construct = domain.constructs[constructIdx];
+            construct.selected = true;
+
+            var question = construct.questions[questionIdx];
+            question.selected = true;
         }
         return guide;
     };
@@ -118,12 +142,15 @@ bookletApp.service("taxonomySvc", function($http) {
         isTaxonomyLoaded: isTaxonomyLoaded,
         getDomains: getDomains,
         setSelectedDomain: setSelectedDomain,
+        getSelectedDomainIdx: getSelectedDomainIdx,
         getSelectedDomain: getSelectedDomain,
         setSelectedConstruct: setSelectedConstruct,
         getSelectedConstruct: getSelectedConstruct,
         getDomainTitle: getDomainTitle,
         getConstructTitle: getConstructTitle,
-        getDeselectedQuestions: getDeselectedQuestions,
+        chooseConstruct: chooseConstruct,
+        chooseDomain: chooseDomain,
+        getSelectedQuestions: getSelectedQuestions,
         getGuide: getGuide
     };
 });

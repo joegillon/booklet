@@ -23,12 +23,13 @@
   </div>
 
   <div id="the_guide">
-    <span ng-repeat="domain in guide()">
+    <span ng-repeat="domain in guide()" ng-show="domain.selected">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h5>{{domain.name}}</h5>
         </div>
-        <div class="panel-body" ng-repeat="construct in domain.constructs">
+        <div class="panel-body" ng-repeat="construct in domain.constructs"
+              ng-show="construct.selected">
           <h6 class="panel-primary"><b>{{construct.name}}</b></h6>
           <p><i>{{construct.intro}}</i></p>
           <ul ng-repeat="guideline in construct.guidelines">
@@ -40,7 +41,7 @@
             </li>
           </ul>
           <ol>
-            <li ng-repeat="question in construct.questions">
+            <li ng-repeat="question in construct.questions" ng-show="question.selected">
               <p ng-repeat="guideline in question.guidelines">
                 <i>{{guideline.text}}</i>
               </p>
@@ -50,6 +51,7 @@
                   {{probe}}
                 </li>
               </ul>
+              <p>
             </li>
           </ol>
         </div>

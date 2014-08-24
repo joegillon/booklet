@@ -15,40 +15,48 @@ bookletApp.controller('DomainsCtrl',
 
 bookletApp.controller('ConstructCtrl',
     function($scope, taxonomySvc) {
-        $scope.selected_domain = taxonomySvc.getSelectedDomain();
-        $scope.domain_title = taxonomySvc.getDomainTitle($scope.selected_domain.name);
+        $scope.selectedDomain = taxonomySvc.getSelectedDomain();
+        $scope.domainTitle = taxonomySvc.getDomainTitle($scope.selectedDomain.name);
 
-        $scope.construct_title = function(construct_name) {
-            return taxonomySvc.getConstructTitle(construct_name);
+        $scope.constructTitle = function(constructName) {
+            return taxonomySvc.getConstructTitle(constructName);
         };
 
         $scope.setSelectedConstruct = function(idx) {
             taxonomySvc.setSelectedConstruct(idx);
+        };
+
+        $scope.chooseDomain = function() {
+            taxonomySvc.chooseDomain(taxonomySvc.getSelectedDomainIdx());
+        };
+
+        $scope.chooseConstruct = function(idx) {
+            taxonomySvc.chooseConstruct(taxonomySvc.getSelectedDomainIdx(), idx);
         };
     }
 );
 
 bookletApp.controller('QuestionCtrl',
     function($scope, taxonomySvc) {
-        $scope.selected_domain = taxonomySvc.getSelectedDomain();
-        $scope.selected_construct = taxonomySvc.getSelectedConstruct();
+        $scope.selectedDomain = taxonomySvc.getSelectedDomain();
+        $scope.selectedConstruct = taxonomySvc.getSelectedConstruct();
+        $scope.selected = !$scope.selected;
     }
 );
 
 bookletApp.controller('GuideCtrl',
     function($scope, $cookieStore, theTaxonomy, taxonomySvc) {
         $scope.saveGuide = function() {
-            var deselections = taxonomySvc.getDeselectedQuestions();
-            if (deselections.length > 0) {
-                $cookieStore.put("deselections", deselections);
+            var selections = taxonomySvc.getSelectedQuestions();
+            if (selections.length > 0) {
+                $cookieStore.put("selections", selections);
             }
         };
 
         $scope.guide = function() {
             taxonomySvc.setTaxonomy(theTaxonomy);
-            var deselections = $cookieStore.get('deselections');
-            $cookieStore.remove('deselections');
-            return taxonomySvc.getGuide(deselections);
+            var selections = $cookieStore.get('selections');
+            return taxonomySvc.getGuide(selections);
         };
     }
 );

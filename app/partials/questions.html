@@ -1,13 +1,13 @@
 <div class="panel panel-primary" ng-controller="QuestionCtrl">
   <div class="panel-heading">
     <h4 class="panel-title">
-      {{selected_domain.name}}: {{selected_construct.name}}
+      {{selectedDomain.name}}: {{selectedConstruct.name}}
     </h4>
   </div>
   <div class="panel-body">
-    Deselect nonessential questions. Click on question to see prompts.
+    Select questions. Click on question to see prompts.
     <div class="panel-group" id="accordion" >
-      <div class="panel panel-default" ng-repeat="(idx, question) in selected_construct.questions">
+      <div class="panel panel-default" ng-repeat="(idx, question) in selectedConstruct.questions">
         <div class="panel-heading">
           <h6 class="panel-title">
             <input type="checkbox" ng-model="question.selected" />
