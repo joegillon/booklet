@@ -1,4 +1,4 @@
 'use strict';
 
-/* Directives */
+var bookletApp = angular.module('bookletApp');
 

@@ -1,5 +1,7 @@
 'use strict';
 
+var bookletApp = angular.module('bookletApp');
+
 bookletApp.service("taxonomySvc", function($http) {
     var _this = this;
 

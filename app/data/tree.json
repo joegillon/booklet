@@ -1,0 +1,81 @@
+[
+	{
+	    "name": "Innovation Characteristics",
+	    "checked": false,
+	    "show": true,
+	    "children": [
+		    {
+			    "name": "Innovation Source",
+			    "checked": false,
+			    "show": true,
+			    "children": [
+			    	{
+					    "name": "Who developed the innovation?",
+					    "checked": false,
+					    "show": true
+			    	},
+			    	{
+					    "name": "Why is the innovation being implemented in your setting?",
+					    "checked": false,
+					    "show": true
+			    	}
+			    ]
+		    },
+		    {
+			    "name": "Evidence Strength & Quality",
+			    "checked": false,
+			    "show": true
+		    },
+		    {
+			    "name": "Relative Advantage",
+			    "checked": false,
+			    "show": true
+		    },
+		    {
+			    "name": "Adaptability",
+			    "checked": false,
+			    "show": true
+		    },
+		    {
+			    "name": "Trialability",
+			    "checked": false,
+			    "show": true
+		    },
+		    {
+			    "name": "Complexity",
+			    "checked": false,
+			    "show": true
+		    },
+		    {
+			    "name": "Design Quality & Packaging",
+			    "checked": false,
+			    "show": true
+		    },
+		    {
+			    "name": "Cost",
+			    "checked": false,
+			    "show": true
+		    }
+	    ]
+	},
+	{
+	    "name": "Outer Setting",
+	    "checked": false,
+	    "show": true
+	},
+	{
+	    "name": "Inner Setting",
+	    "checked": false,
+	    "show": true
+	},
+	{
+	    "name": "Characteristics of Individuals",
+	    "checked": false,
+	    "show": true
+	},
+	{
+	    "name": "Process",
+	    "checked": false,
+	    "show": true
+	}
+]

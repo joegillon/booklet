@@ -1,7 +1,9 @@
 'use strict';
 
+var bookletApp = angular.module('bookletApp');
+
 bookletApp.controller('DomainsCtrl',
-    function($scope, taxonomySvc) {
+    function($scope, theTaxonomy, taxonomySvc) {
         taxonomySvc.setTaxonomy(theTaxonomy);
         $scope.domains = taxonomySvc.getDomains();
 
@@ -34,7 +36,7 @@ bookletApp.controller('QuestionCtrl',
 );
 
 bookletApp.controller('GuideCtrl',
-    function($scope, $cookieStore, taxonomySvc) {
+    function($scope, $cookieStore, theTaxonomy, taxonomySvc) {
         $scope.saveGuide = function() {
             var deselections = taxonomySvc.getDeselectedQuestions();
             if (deselections.length > 0) {
