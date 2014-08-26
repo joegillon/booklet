@@ -3,44 +3,38 @@
 var bookletApp = angular.module('bookletApp');
 
 bookletApp.controller('DomainsCtrl',
-    function($scope, theTaxonomy, taxonomySvc) {
+    function($scope, $cookieStore, theTaxonomy, taxonomySvc) {
         taxonomySvc.setTaxonomy(theTaxonomy);
         $scope.domains = taxonomySvc.getDomains();
 
-        $scope.setSelectedDomain = function(idx) {
-            taxonomySvc.setSelectedDomain(idx);
+        $cookieStore.remove('selections');
+
+        $scope.setCurrentDomain = function(idx) {
+            taxonomySvc.setCurrentDomain(idx);
         };
     }
 );
 
 bookletApp.controller('ConstructCtrl',
     function($scope, taxonomySvc) {
-        $scope.selectedDomain = taxonomySvc.getSelectedDomain();
-        $scope.domainTitle = taxonomySvc.getDomainTitle($scope.selectedDomain.name);
+        $scope.domain = taxonomySvc.getCurrentDomain();
+        $scope.domainTitle = taxonomySvc.getDomainTitle();
+        $scope.constructs = $scope.domain.constructs;
 
         $scope.constructTitle = function(constructName) {
             return taxonomySvc.getConstructTitle(constructName);
         };
 
-        $scope.setSelectedConstruct = function(idx) {
-            taxonomySvc.setSelectedConstruct(idx);
-        };
-
-        $scope.chooseDomain = function() {
-            taxonomySvc.chooseDomain(taxonomySvc.getSelectedDomainIdx());
-        };
-
-        $scope.chooseConstruct = function(idx) {
-            taxonomySvc.chooseConstruct(taxonomySvc.getSelectedDomainIdx(), idx);
+        $scope.setCurrentConstruct = function(idx) {
+            taxonomySvc.setCurrentConstruct(idx);
         };
     }
 );
 
 bookletApp.controller('QuestionCtrl',
     function($scope, taxonomySvc) {
-        $scope.selectedDomain = taxonomySvc.getSelectedDomain();
-        $scope.selectedConstruct = taxonomySvc.getSelectedConstruct();
-        $scope.selected = !$scope.selected;
+        $scope.currentDomain = taxonomySvc.getCurrentDomain();
+        $scope.currentConstruct = taxonomySvc.getCurrentConstruct();
     }
 );
 

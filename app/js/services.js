@@ -6,8 +6,8 @@ bookletApp.service("taxonomySvc", function($http) {
     var _this = this;
 
     _this.taxonomy = [];
-    _this.selectedDomain = -1;
-    _this.selectedConstruct = -1;
+    _this.currentDomain = -1;
+    _this.currentConstruct = -1;
 
     var getTaxonomy = function() {
         $http.get('data/taxonomy.json').success(function(data) {
@@ -48,63 +48,56 @@ bookletApp.service("taxonomySvc", function($http) {
         return _this.taxonomy;
     };
 
-    var setSelectedDomain = function(idx) {
-        _this.selectedDomain = idx;
+    var setCurrentDomain = function(idx) {
+        _this.currentDomain = idx;
     };
 
-    var getSelectedDomainIdx = function() {
-        return _this.selectedDomain;
+    var getCurrentDomainIdx = function() {
+        return _this.currentDomain;
     };
 
-    var getSelectedDomain = function() {
-        return _this.taxonomy[_this.selectedDomain];
+    var getCurrentDomain = function() {
+        return _this.taxonomy[_this.currentDomain];
     };
 
-    var setSelectedConstruct = function(idx) {
-        _this.selectedConstruct = idx;
+    var setCurrentConstruct = function(idx) {
+        _this.currentConstruct = idx;
     };
 
-    var getSelectedConstruct = function() {
-        return _this.taxonomy[_this.selectedDomain].constructs[_this.selectedConstruct];
+    var getCurrentConstruct = function() {
+        return _this.taxonomy[_this.currentDomain].constructs[_this.currentConstruct];
     };
 
     var getDomainTitle = function(domainName) {
+        if (typeof domainName === 'undefined') {
+            domainName = getCurrentDomain().name;
+        }
         return domainName.split(' ').join('_');
     };
 
     var getConstructTitle = function(constructName) {
+        if (typeof constructName === 'undefined') {
+            constructName = _this.currentConstruct.name;
+        }
         constructName = constructName.split(' ').join('_');
         return constructName.split('&').join('%26');
-    };
-
-    var chooseConstruct = function(domainIdx, constructIdx) {
-        var construct = _this.taxonomy[domainIdx].constructs[constructIdx];
-        var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
-        for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
-            var question = construct.questions[questionIdx];
-            question.selected = true;
-        }
-    };
-
-    var chooseDomain = function(domainIdx) {
-        var domain = _this.taxonomy[domainIdx];
-        for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
-            chooseConstruct(domainIdx, constructIdx);
-        }
     };
 
     var getSelectedQuestions = function() {
         var result = [];
         var domains = getDomains();
-        for (var domainIdx = 0; domainIdx < domains.length; domainIdx++) {
-            var domain = domains[domainIdx];
-            for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
-                var construct = domain.constructs[constructIdx];
-                var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
-                for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
-                    var question = construct.questions[questionIdx];
-                    if (question.selected) {
-                        result.push(question.ref);
+        for (var didx = 0; didx < domains.length; didx++) {
+            var domain = domains[didx];
+            for (var cidx = 0; cidx < domain.constructs.length; cidx++) {
+                var construct = domain.constructs[cidx];
+                if (construct.questions !== undefined) {
+                    for (var qidx = 0; qidx < construct.questions.length; qidx++) {
+                        var question = construct.questions[qidx];
+                        if (domain.selected || 
+                            construct.selected || 
+                            question.selected) {
+                            result.push(question.ref);
+                        }
                     }
                 }
             }
@@ -141,15 +134,13 @@ bookletApp.service("taxonomySvc", function($http) {
         setTaxonomy: setTaxonomy,
         isTaxonomyLoaded: isTaxonomyLoaded,
         getDomains: getDomains,
-        setSelectedDomain: setSelectedDomain,
-        getSelectedDomainIdx: getSelectedDomainIdx,
-        getSelectedDomain: getSelectedDomain,
-        setSelectedConstruct: setSelectedConstruct,
-        getSelectedConstruct: getSelectedConstruct,
+        setCurrentDomain: setCurrentDomain,
+        getCurrentDomainIdx: getCurrentDomainIdx,
+        getCurrentDomain: getCurrentDomain,
+        setCurrentConstruct: setCurrentConstruct,
+        getCurrentConstruct: getCurrentConstruct,
         getDomainTitle: getDomainTitle,
         getConstructTitle: getConstructTitle,
-        chooseConstruct: chooseConstruct,
-        chooseDomain: chooseDomain,
         getSelectedQuestions: getSelectedQuestions,
         getGuide: getGuide
     };
