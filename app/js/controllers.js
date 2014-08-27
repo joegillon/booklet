@@ -9,6 +9,13 @@ bookletApp.controller('DomainsCtrl',
 
         $cookieStore.remove('selections');
 
+        $scope.reset = function() {
+            taxonomySvc.setTaxonomy(theTaxonomy);
+            $scope.domains = taxonomySvc.getDomains();
+
+            $cookieStore.remove('selections');
+        };
+
         $scope.setCurrentDomain = function(idx) {
             taxonomySvc.setCurrentDomain(idx);
         };
