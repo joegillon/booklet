@@ -28,6 +28,7 @@
         <div class="panel-heading">
           <h5>{{domain.name}}</h5>
         </div>
+
         <div class="panel-body" ng-repeat="construct in domain.constructs"
               ng-show="construct.selected">
           <h6 class="panel-primary"><b>{{construct.name}}</b></h6>
@@ -47,6 +48,11 @@
               </p>
               {{question.text}}
               <ul>
+                <li ng-repeat="choice in question.choices">
+                  {{choice}}
+                </li>
+              </ul> 
+              <ul>
                 <li ng-repeat="probe in question.probes">
                   {{probe}}
                 </li>
@@ -54,9 +60,38 @@
               <p>
             </li>
           </ol>
-        </div>
-      </div>
-    </span>
+
+          <div class="panel-body" ng-repeat="subconstruct in construct.subconstructs"
+                ng-show="subconstruct.selected">
+            <h6 class="panel-primary"><b>{{subconstruct.name}}</b></h6>
+            <p><i>{{subconstruct.intro}}</i></p>
+            <ul ng-repeat="guideline in subconstruct.guidelines">
+              <li>
+                <i>
+                  <span ng-if="guideline.title">{{guideline.title}}:<br></span>
+                  {{guideline.text}}
+                </i>
+              </li>
+            </ul>
+            <ol>
+              <li ng-repeat="question in subconstruct.questions" ng-show="question.selected">
+                <p ng-repeat="guideline in question.guidelines">
+                  <i>{{guideline.text}}</i>
+                </p>
+                {{question.text}}
+                <ul>
+                  <li ng-repeat="probe in question.probes">
+                    {{probe}}
+                  </li>
+                </ul>
+                <p>
+              </li>
+            </ol>
+          </div>
+          
+        </div>  <!-- panel-body: constructs -->
+      </div>  <!-- panel-primary -->
+    </span> <!-- domains -->
   </div>
 
   <script src="../bower_components/angular/angular.js"></script>

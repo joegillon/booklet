@@ -6,6 +6,8 @@ var bookletApp = angular.module('bookletApp', [
   'ngCookies'
 ]);
 
+bookletApp.constant('WIKI_URL', "http://cfirwiki.net/wiki/index.php?title=");
+
 bookletApp.config(['$routeProvider',
     function($routeProvider) {
         //noinspection JSCheckFunctionSignatures

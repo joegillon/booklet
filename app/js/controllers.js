@@ -16,17 +16,24 @@ bookletApp.controller('DomainsCtrl',
 );
 
 bookletApp.controller('ConstructCtrl',
-    function($scope, taxonomySvc) {
+    function($scope, WIKI_URL, taxonomySvc) {
         $scope.domain = taxonomySvc.getCurrentDomain();
-        $scope.domainTitle = taxonomySvc.getDomainTitle();
         $scope.constructs = $scope.domain.constructs;
 
-        $scope.constructTitle = function(constructName) {
-            return taxonomySvc.getConstructTitle(constructName);
+        $scope.wikiUrl = function(name) {
+            return WIKI_URL + taxonomySvc.getTitle(name);
+        };
+
+        $scope.getTitle = function(name) {
+            return taxonomySvc.getTitle(name);
         };
 
         $scope.setCurrentConstruct = function(idx) {
             taxonomySvc.setCurrentConstruct(idx);
+        };
+
+        $scope.setCurrentSubconstruct = function(idx) {
+            taxonomySvc.setCurrentSubconstruct(idx);
         };
     }
 );

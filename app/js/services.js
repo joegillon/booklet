@@ -8,6 +8,7 @@ bookletApp.service("taxonomySvc", function($http) {
     _this.taxonomy = [];
     _this.currentDomain = -1;
     _this.currentConstruct = -1;
+    _this.currentSubconstruct = -1;
 
     var getTaxonomy = function() {
         $http.get('data/taxonomy.json').success(function(data) {
@@ -20,28 +21,41 @@ bookletApp.service("taxonomySvc", function($http) {
     };
 
     var addQuestionProperties = function(data) {
-        for (var domainIdx = 0; domainIdx < data.length; domainIdx++) {
-            var domain = data[domainIdx];
+        for (var didx = 0; didx < data.length; didx++) {
+            var domain = data[didx];
             domain.selected = false;
-            for (var constructIdx = 0; constructIdx < domain.constructs.length; constructIdx++) {
-                var construct = domain.constructs[constructIdx];
-                construct.selected = false;
-                var numQuestions = (construct.questions === undefined) ? 0 : construct.questions.length;
-                for (var questionIdx = 0; questionIdx < numQuestions; questionIdx++) {
-                    var question = construct.questions[questionIdx];
-                    var ref = domainIdx.toString() + '_' + 
-                              constructIdx.toString() + '_' +
-                              questionIdx.toString(); 
-                    question.ref = ref;
-                    question.selected = false;
+            for (var cidx = 0; 
+                     cidx < domain.constructs.length; 
+                     cidx++) {
+                var construct = domain.constructs[cidx];
+                initConstruct(construct, didx, cidx);
+                if (construct.subconstructs !== undefined) {
+                    for (var sidx = 0; 
+                             sidx < construct.subconstructs.length; 
+                             sidx++) {
+                        var subconstruct = construct.subconstructs[sidx];
+                        initConstruct(subconstruct, didx, cidx, sidx);
+                    }
                 }
             }
         }
         return data;
     };
 
-    var isTaxonomyLoaded = function() {
-        return _this.taxonomy.length > 0;
+    var initConstruct = function(construct, didx, cidx, sidx) {
+        construct.selected = false;
+        if (construct.questions === undefined) {
+            return;
+        }
+        for (var qidx = 0; qidx < construct.questions.length; qidx++) {
+            var question = construct.questions[qidx];
+            var ref = didx.toString() + '_' + 
+                      cidx.toString() + '_' +
+                      (sidx === undefined ? '' : sidx.toString()) + '_' +
+                      qidx.toString(); 
+            question.ref = ref;
+            question.selected = false;
+        }
     };
 
     var getDomains = function() {
@@ -65,22 +79,25 @@ bookletApp.service("taxonomySvc", function($http) {
     };
 
     var getCurrentConstruct = function() {
-        return _this.taxonomy[_this.currentDomain].constructs[_this.currentConstruct];
+        return _this.taxonomy
+                [_this.currentDomain].
+                    constructs[_this.currentConstruct];
     };
 
-    var getDomainTitle = function(domainName) {
-        if (typeof domainName === 'undefined') {
-            domainName = getCurrentDomain().name;
-        }
-        return domainName.split(' ').join('_');
+    var setCurrentSubconstruct = function(idx) {
+        _this.currentSubconstruct = idx;
     };
 
-    var getConstructTitle = function(constructName) {
-        if (typeof constructName === 'undefined') {
-            constructName = _this.currentConstruct.name;
-        }
-        constructName = constructName.split(' ').join('_');
-        return constructName.split('&').join('%26');
+    var getCurrentSubconstruct = function() {
+        return _this.taxonomy
+            [_this.currentDomain].
+                constructs[_this.currentConstruct].
+                    subconstructs[_this.currentSubconstruct];
+    };
+
+    var getTitle = function(name) {
+        name = name.split('&').join('%26');
+        return name.split(' ').join('_');
     };
 
     var getSelectedQuestions = function() {
@@ -90,16 +107,40 @@ bookletApp.service("taxonomySvc", function($http) {
             var domain = domains[didx];
             for (var cidx = 0; cidx < domain.constructs.length; cidx++) {
                 var construct = domain.constructs[cidx];
-                if (construct.questions !== undefined) {
-                    for (var qidx = 0; qidx < construct.questions.length; qidx++) {
-                        var question = construct.questions[qidx];
-                        if (domain.selected || 
-                            construct.selected || 
-                            question.selected) {
-                            result.push(question.ref);
-                        }
+                var ques = getConstructQuestions(
+                            construct, 
+                            domain.selected,
+                            construct.selected);
+                result = result.concat(ques);
+                if (construct.subconstructs !== undefined) {
+                    for (var sidx = 0;
+                             sidx < construct.subconstructs.length;
+                             sidx++) {
+                        var subconstruct = construct.subconstructs[sidx];
+                        ques = getConstructQuestions(
+                                subconstruct, 
+                                domain.selected, 
+                                construct.selected,
+                                subconstruct.selected
+                                );
+                        result = result.concat(ques);
                     }
                 }
+            }
+        }
+        return result;
+    };
+
+    var getConstructQuestions = function(construct, dsel, csel, ssel) {
+        var result = [];
+        if (construct.questions === undefined) {
+            return result;
+        }
+        ssel = ssel || false;
+        for (var qidx = 0; qidx < construct.questions.length; qidx++) {
+            var question = construct.questions[qidx];
+            if (dsel || csel || ssel || question.selected) {
+                result.push(question.ref);
             }
         }
         return result;
@@ -114,9 +155,12 @@ bookletApp.service("taxonomySvc", function($http) {
         for (var idx = 0; idx < selections.length; idx++) {
 
             var indexes = selections[idx].split('_');
+
             var domainIdx = parseInt(indexes[0]);
             var constructIdx = parseInt(indexes[1]);
-            var questionIdx = parseInt(indexes[2]);
+            var subconstructIdx = 
+                    indexes[2] ? parseInt(indexes[2]) : -1;
+            var questionIdx = parseInt(indexes[3]);
 
             var domain = guide[domainIdx];
             domain.selected = true;
@@ -124,23 +168,33 @@ bookletApp.service("taxonomySvc", function($http) {
             var construct = domain.constructs[constructIdx];
             construct.selected = true;
 
-            var question = construct.questions[questionIdx];
-            question.selected = true;
+            var question;
+            if (subconstructIdx == -1) {
+                question = construct.questions[questionIdx];
+                question.selected = true;
+            } 
+            else {
+                var subconstruct = construct.subconstructs[subconstructIdx];
+                subconstruct.selected = true;
+                question = subconstruct.questions[questionIdx];
+                question.selected = true;
+            }
+
         }
         return guide;
     };
 
     return {
         setTaxonomy: setTaxonomy,
-        isTaxonomyLoaded: isTaxonomyLoaded,
         getDomains: getDomains,
         setCurrentDomain: setCurrentDomain,
         getCurrentDomainIdx: getCurrentDomainIdx,
         getCurrentDomain: getCurrentDomain,
         setCurrentConstruct: setCurrentConstruct,
         getCurrentConstruct: getCurrentConstruct,
-        getDomainTitle: getDomainTitle,
-        getConstructTitle: getConstructTitle,
+        setCurrentSubconstruct: setCurrentSubconstruct,
+        getCurrentSubonstruct: getCurrentSubconstruct,
+        getTitle: getTitle,
         getSelectedQuestions: getSelectedQuestions,
         getGuide: getGuide
     };
