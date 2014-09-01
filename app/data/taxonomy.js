@@ -142,7 +142,6 @@ bookletApp.value('theTaxonomy', [
             {
 				"name": "Complexity",
                 "description": "Perceived difficulty of implementation, reflected by duration, scope, radicalness, disruptiveness, centrality, and intricacy and number of steps required to implement.",
-				"intro": "This construct addresses the complexity of the intervention, not the complexity of the implementation. Challenges related to implementation should be coded to the appropriate CFIR code, e.g. challenges with engaging staff should be coded to Engaging: Key Stakeholders or challenges related to making the intervention a priority for leadership should be (double) coded to Leadership Engagement and Relative Priority.",
 				"guidelines": [
                     {
                         "text": "This construct addresses the complexity of the intervention, not the complexity of the implementation. Challenges related to implementation should be coded to the appropriate CFIR code, e.g. challenges with engaging staff should be coded to Engaging: Key Stakeholders or challenges related to making the intervention a priority for leadership should be (double) coded to Leadership Engagement and Relative Priority."
@@ -317,7 +316,6 @@ bookletApp.value('theTaxonomy', [
             {
                 "name": "External Policies & Incentives",
                 "description": "A broad construct that includes external strategies to spread interventions including policy and regulations (governmental or other central entity), external mandates, recommendations and guidelines, pay-for-performance, collaboratives, and public or benchmark reporting.",
-                "intro": "In a healthcare setting, external policies and incentives may include clinical performance measures and pay for performance, where as in an education setting, this may include standardized testing performance measures and funding allocation.",
 				"guidelines": [
                     {
                         "text": "In a healthcare setting, external policies and incentives may include clinical performance measures and pay for performance, where as in an education setting, this may include standardized testing performance measures and funding allocation."
@@ -505,7 +503,7 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "Is there a strong need for this intervention?",
-                                "prompts": [
+                                "probes": [
                                     "Why or why not?",
                                     "Do others see a need for the intervention?"
                                 ]
@@ -515,7 +513,7 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "How do people feel about current programs/practices/process that are available related to the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "To what extent do current programs fail to meet existing needs? Will the intervention meet these needs?",
                                     "How will the intervention fill current gaps?"
                                 ]
@@ -533,26 +531,26 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "How well does the intervention fit with your values and norms and the values and norms within the organization?",
-                                "prompts": [
+                                "probes": [
                                     "Values relating to interacting with individuals served by your organization, e.g. shared-decision making vs. being more directive?",
                                     "Values related to  referring to outside vendor-based programs vs. providing services by in-house staff?"
                                 ]
                             },
                             {
                                 "text": "How well does the intervention fit with existing work processes and practices in your setting?",
-                                "prompts": [
+                                "probes": [
                                     "What are likely issues or complications that may arise?"
                                 ]
                             },
                             {
                                 "text": "Can you describe how the intervention will be integrated into current processes?",
-                                "prompts": [
+                                "probes": [
                                     "How will it interact or conflict with current programs or processes?"
                                 ]
                             },
                             {
                                 "text": "Will the intervention replace or compliment a current program or process? ",
-                                "prompts": [
+                                "probes": [
                                     "In what ways?"
                                 ]
                             }
@@ -564,7 +562,7 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "What kinds of high-priority initiatives or activities are already happening in your setting?",
-                                "prompts": [
+                                "probes": [
                                     "What is the priority of getting the intervention implemented relative to other initiatives that are happening now?",
                                     "Will the implementation conflict with these priorities?",
                                     "Will the implementation help achieve (or relieve pressure related to) these priorities?"
@@ -572,20 +570,20 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "Describe activities or initiatives that (appear to) have highest priority for you (for the organization)?",
-                                "prompts": [
+                                "probes": [
                                     "What kind of pressure are you feeling to accomplish this? Where is it coming from? Why?"
                                 ]
                             },
                             {
                                 "text": "To what extent might the implementation take a backseat to other high-priority initiatives going on now?",
-                                "prompts": [
+                                "probes": [
                                     "How important do you think it is to implement the intervention compared to the other priorities?",
                                     "How important is it to others, such as your coworkers or leaders, to implement the intervention compared to the other priorities?"
                                 ]
                             },
                             {
                                 "text": "How will you juggle competing priorities in your own work? How will your colleagues juggle these priorities?",
-                                "prompts": [
+                                "probes": [
                                     "What are the other priorities?",
                                     "How does the priority of implementing the intervention compare to other priorities in your organization? For your own work?"
                                 ]
@@ -598,7 +596,7 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "What kinds of incentives are there to help ensure that the implementation of the intervention is successful?",
-                                "prompts": [
+                                "probes": [
                                     "What is your motivation for wanting to help ensure the implementation is successful?"
                                 ]
                             },
@@ -607,7 +605,7 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "Are there any special recognitions or rewards planned that are related to implementing the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "Can you describe them?",
                                     "Will these be targeted to groups/teams/units or individuals?"
                                 ]
@@ -619,13 +617,13 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "Have you/your unit/your organization set  goals related to the implementation of the intervention?",
-                                "prompts": [
+                                "probes": [
                                     " [If yes] What are the goals?"
                                 ]
                             },
                             {
                                 "text": "To what extent does your organization/unit set goals for current programs/initiatives?",
-                                "prompts": [
+                                "probes": [
                                     "How are goals communicated in the organization? To whom are they communicated?",
                                     "Can you give an example of a goal? How and to whom is it communicated?",
                                     "Are changes made based on how things are going? Can you give an example?"
@@ -633,13 +631,13 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "To what extent are organizational goals monitored for progress?",
-                                "prompts": [
+                                "probes": [
                                     "Can you give an example of monitoring in terms of the type of information, who is informed, and how?"
                                 ]
                             },
                             {
                                 "text": "Do you get any feedback reports about your work?",
-                                "prompts": [
+                                "probes": [
                                     "What do they look like? Content, mode, form?",
                                     "How helpful are those reports?",
                                     "How can they be improved?",
@@ -706,13 +704,13 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "What level of endorsement or support have you seen or heard from leaders?",
-                                "prompts": [
+                                "probes": [
                                     "Who are these leaders and how has this affected things so far? Going forward?"
                                 ]
                             },
                             {
                                 "text": "What level of involvement has leadership at your organization had so far with the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "Do they know about the intention to implement the intervention?",
                                     "Who are these leaders? How do attitudes of different leaders vary?",
                                     "What kind of support have they given you? Can you provide specific examples?"
@@ -720,7 +718,7 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "What kind of support or actions can you expect from leaders in your organization to help make implementation successful?",
-                                "prompts": [
+                                "probes": [
                                     "Who are these leaders? How do attitudes of different leaders vary?",
                                     "Do they know about the intention to implement the intervention?",
                                     "What kind of support can you expect going forward? Can you provide specific examples?",
@@ -740,7 +738,7 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "Do you expect to have sufficient resources to implement and administer the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "[If Yes] What resources are you counting on? Are there any other resources that you received, or would have liked to receive?",
                                     "What resources will be easy to procure?",
                                     "[If no] What resources will not be available?"
@@ -748,7 +746,7 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "How do you expect to procure necessary resources?",
-                                "prompts": [
+                                "probes": [
                                     "Who will be involved in helping you get what is needed?",
                                     "What challenges do you expect to encounter?"
                                 ]
@@ -841,20 +839,20 @@ bookletApp.value('theTaxonomy', [
                     },
                     {
                         "text": "Do you think the intervention will be effective in your setting?",
-                        "prompts": [
+                        "probes": [
                             "Why or why not?"
                         ]
                     },
                     {
                         "text": "How do you feel about the intervention being used in your setting?",
-                        "prompts": [
+                        "probes": [
                             "How do you feel about the plan to implement the intervention in your setting?",
                             "Do you have any feelings of anticipation? Stress? Enthusiasm? Why?"
                         ]
                     },
                     {
                         "text": "At what stage of implementation is the intervention at in your organization?",
-                        "prompts": [
+                        "probes": [
                             "How do you think the program is going?",
                             "Why do you say that?"
                         ]
@@ -867,25 +865,25 @@ bookletApp.value('theTaxonomy', [
                 "questions": [
                     {
                         "text": "How confident are you that you will be able to successfully implement the intervention?",
-                        "prompts": [
+                        "probes": [
                             "What gives you that level of confidence (or lack of confidence)?"
                         ]
                     },
                     {
                         "text": "How confident are you that you will be able to use the intervention?",
-                        "prompts": [
+                        "probes": [
                             "What gives you that level of confidence (or lack of confidence)?"
                         ]
                     },
                     {
                         "text": "How confident do you think your colleagues feel about implementing the intervention?",
-                        "prompts": [
+                        "probes": [
                             "What gives them that level of confidence (or lack of confidence)?"
                         ]
                     },
                     {
                         "text": "How confident do you think your colleagues feel about using the intervention?",
-                        "prompts": [
+                        "probes": [
                             "What gives them that level of confidence (or lack of confidence)?"
                         ]
                     }
@@ -944,7 +942,7 @@ bookletApp.value('theTaxonomy', [
                     },
                     {
                         "text": "Can you describe the plan for implementing the intervention?",
-                        "prompts": [
+                        "probes": [
                             "How detailed is the plan? Who knows about it? Is the plan overly complex? Understandable? Realistic and feasible?",
                             "What is your role in the planning process?",
                             "Who is involved in the planning process? What are their roles?",
@@ -955,7 +953,7 @@ bookletApp.value('theTaxonomy', [
                     },
                     {
                         "text": "What role has your plan for implementation played during implementation?",
-                        "prompts": [
+                        "probes": [
                             "Was it used to guide implementation of the intervention?",
                             "Was it used to compare planned with actual progress?",
                             "Were there revisions or refinements to the plan?",
@@ -1010,7 +1008,7 @@ bookletApp.value('theTaxonomy', [
                                         "text": "This question is also related to intervention Source. Code responses related to the source of the intervention under intervention Source. Code responses related to who participated in the decision process here, as an indication of early (or not) engagement. Participation in decision-making is an effective engagement strategy to help people feel ownership of the intervention."
                                     }
                                 ],
-                                "prompts": [
+                                "probes": [
                                     "How was the decision made to participate in the intervention?",
                                     "Who participated in the decision-making process?",
                                     "Were you involved in this process?"
@@ -1018,7 +1016,7 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "Who will lead implementation of the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "How did/will this person come into this role? Appointed? Volunteered? Voluntold?",
                                     "What attributes or qualities does this person have that makes them an effective leader of this implementation? What attributes or qualities does this person lack?",
                                     "Does this person have sufficient authority to do what is necessary to implement the intervention?"
@@ -1035,7 +1033,7 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "Other than the formal implementation leader, are there people in your organization who are likely to champion (go above and beyond what might be expected) the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "Were they formally appointed in this position, or was it an informal role?",
                                     "What position do these champions have in your organization?",
                                     "How do you think they will help with implementation? Getting people to use the intervention?"
@@ -1043,13 +1041,13 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "Can you describe people's perception of this champion/individual?",
-                                "prompts": [
+                                "probes": [
                                     "To what extent do you respect the opinions and actions of the champion?"
                                 ]
                             },
                             {
                                 "text": "What kinds of behaviors or actions do you think this individual/champion will exhibit?",
-                                "prompts": [
+                                "probes": [
                                     "For example, helping get senior leaders on board, helping solve problems? Or a small role?"
                                 ]
                             }
@@ -1061,7 +1059,7 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "Will someone (or a team) outside your organization be helping you with implementing the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "Can you describe this person/group?",
                                     "How did they get involved?",
                                     "What is their role?",
@@ -1076,7 +1074,7 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "What steps have been taken to encourage individuals to commit to using the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "Which individuals will you target?",
                                     "How will you approach them?",
                                     "What information will you give them?",
@@ -1085,14 +1083,14 @@ bookletApp.value('theTaxonomy', [
                             },
                             {
                                 "text": "What is your communication or education strategy (not including training, see Access to Knowledge and Information) for getting the word out about the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "What materials/modes/venues do you plan to use? For example e-bulletin boards, emails, brochures?",
                                     "What process do you plan to use to communicate? For example,  going to staff meetings, talking to people informally?"
                                 ]
                             },
                             {
                                 "text": "Who are the key individuals to get on board with the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "To encourage individuals to use the intervention? To help with implementation?"
                                 ]
                             }
@@ -1108,7 +1106,7 @@ bookletApp.value('theTaxonomy', [
                         "questions": [
                             {
                                 "text": "How will you or your colleagues communicate to the individuals that are served by your organization about the intervention?",
-                                "prompts": [
+                                "probes": [
                                     "How will they participate in the intervention?",
                                     "How will they access the intervention?"
                                 ]
@@ -1128,7 +1126,7 @@ bookletApp.value('theTaxonomy', [
                 "questions": [
                     {
                         "text": "Has the intervention been implemented according to the implementation plan?",
-                        "prompts": [
+                        "probes": [
                             "[If Yes] Can you describe this?",
                             "[If No] Why not?"
                         ]
@@ -1146,14 +1144,14 @@ bookletApp.value('theTaxonomy', [
                 "questions": [
                     {
                         "text": "What kind of information do you plan to collect as you implement the intervention?",
-                        "prompts": [
+                        "probes": [
                             "Which measures will you track? How will you track them?",
                             "How will this information be used?"
                         ]
                     },
                     {
                         "text": "Will you receive feedback reports about the implementation or the intervention itself?",
-                        "prompts": [
+                        "probes": [
                             "What will they look like? Content, mode, form?",
                             "How helpful do you think they will be?",
                             "How could they be improved?",
@@ -1163,19 +1161,19 @@ bookletApp.value('theTaxonomy', [
                     },
                     {
                         "text": "How will you assess progress towards implementation or intervention goals?",
-                        "prompts": [
+                        "probes": [
                             "How will results of the evaluation be distributed to stakeholders?"
                         ]
                     },
                     {
                         "text": "Will feedback be elicited from staff? From the individuals served by your organization?",
-                        "prompts": [
+                        "probes": [
                             "[If yes] What kind of feedback?"
                         ]
                     },
                     {
                         "text": "To what extent has your organization/unit set goals for implementing the intervention?",
-                        "prompts": [
+                        "probes": [
                             "How will goals be communicated in the organization? To whom will they be communicated?",
                             "What are the goals? How and to whom will they be communicated?"
                         ]
