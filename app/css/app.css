@@ -5,6 +5,7 @@
 /*}*/
 
 body{margin-top:50px;}
+
 .glyphicon { margin-right:10px; }
 .panel-body { padding:0px; }
 .panel-body table tr td { padding-left: 15px }
@@ -50,7 +51,7 @@ body{margin-top:50px;}
 }
 
 .sidebar-nav li a {
-    color: #999999;
+    color: #fff;
     display: block;
     text-decoration: none;
 }
