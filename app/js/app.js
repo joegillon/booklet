@@ -41,6 +41,12 @@ bookletApp.config(['$routeProvider',
             }
         );
         //noinspection JSCheckFunctionSignatures
+        $routeProvider.when('/guide_select',
+            {
+                templateUrl: 'partials/guide_select.html'
+            }
+        );
+        //noinspection JSCheckFunctionSignatures
         $routeProvider.otherwise(
             {
                 redirectTo: '/'

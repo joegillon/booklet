@@ -1,0 +1,84 @@
+<div ng-controller="SelectionCtrl">
+
+  <div class="panel-group" id="dmn_acc">
+    <div class="panel panel-info"
+        ng-repeat="(dmnIdx, dmn) in domains">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="panel-toggle" data-toggle="collapse"
+             data-parent="#dmn_acc"
+             ng-href="guide_select#dmn_{{dmnIdx}}">
+            {{dmn.name}}
+          </a>
+        </h4>
+      </div>
+      <div class="panel-body collapse" id="dmn_{{dmnIdx}}">
+        <div class="panel-inner">
+          <div class="panel-group" id="dmn_{{dmnIdx}}_acc">
+            <div class="panel panel-primary"
+                ng-repeat="(conIdx, con) in dmn.constructs">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a class="panel-toggle" data-toggle="collapse"
+                      data-parent="#dmn_{{dmnIdx}}_acc"
+                      href="guide_select#con_{{dmnIdx}}_{{conIdx}}">
+                    {{con.name}}
+                  </a>
+                </h4>
+              </div>
+              <div class="panel-body collapse"
+                  id="con_{{dmnIdx}}_{{conIdx}}">
+                <div class="panel-inner">
+                  {{con.description}}
+                  To learn more see the
+                  <a href="{{wikiUrl(con.name)}}" target="_blank">wiki</a>.
+                  <p>
+                  <ol>
+                    <li ng-repeat="question in con.questions">
+                      {{question.text}}
+                    </li>
+                  </ol>
+                  <input type="checkbox" ng-model="con.selected">
+                    &nbsp;&nbsp;Choose ALL questions.
+                  <p>
+                  <div ng-show="con.subconstructs" class="panel-group"
+                      id="con_{{dmnIdx}}_{{conIdx}}_acc">
+                    <h5>Subconstructs</h5>
+                    <div class="panel panel-success"
+                        ng-repeat="(subIdx, sub) in con.subconstructs">
+                      <div class="panel-heading">
+                        <h5 class="panel-title">
+                          <a data-toggle="collapse"
+                              data-parent="#con_{{dmnIdx}}_{{conIdx}}_acc"
+                              ng-href="guide_select#sub_{{conIdx}}_{{subIdx}}">
+                            {{sub.name}}
+                          </a>
+                        </h5>
+                      </div>
+                      <div class="panel-body collapse"
+                          id="sub_{{conIdx}}_{{subIdx}}">
+                        <div class="panel-inner">
+                          {{sub.description}}
+                          To learn more see the
+                          <a href="{{wikiUrl(sub.name)}}" target="_blank">wiki</a>.
+                          <p>
+                          <ol>
+                            <li ng-repeat="question in sub.questions">
+                              {{question.text}}
+                            </li>
+                          </ol>
+                          <input type="checkbox" ng-model="sub.selected">
+                            &nbsp;&nbsp;Choose ALL questions.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  <!-- domain panel-info -->
+  </div>  <!-- domain panel-group -->
+</div>  <!-- controller div -->

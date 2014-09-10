@@ -2,6 +2,27 @@
 
 var bookletApp = angular.module('bookletApp');
 
+bookletApp.controller('SelectionCtrl',
+    function($scope, $cookieStore, theTaxonomy, taxonomySvc) {
+        taxonomySvc.setTaxonomy(theTaxonomy);
+        $scope.domains = taxonomySvc.getDomains();
+
+        $cookieStore.remove('selections');
+
+        $scope.reset = function() {
+            taxonomySvc.setTaxonomy(theTaxonomy);
+            $scope.domains = taxonomySvc.getDomains();
+
+            $cookieStore.remove('selections');
+        };
+
+        $scope.getTitle = function(name) {
+            return taxonomySvc.getTitle(name);
+        };
+
+    }
+);
+
 bookletApp.controller('DomainsCtrl',
     function($scope, $cookieStore, theTaxonomy, taxonomySvc) {
         taxonomySvc.setTaxonomy(theTaxonomy);
@@ -18,6 +39,27 @@ bookletApp.controller('DomainsCtrl',
 
         $scope.setCurrentDomain = function(idx) {
             taxonomySvc.setCurrentDomain(idx);
+        };
+    }
+);
+
+bookletApp.controller('ConstructCtrl2',
+    function($scope, theTaxonomy, taxonomySvc) {
+        taxonomySvc.setTaxonomy(theTaxonomy);
+        $scope.domains = taxonomySvc.getDomains();
+        $scope.domain = $scope.domains[2];
+        $scope.constructs = $scope.domain.constructs;
+
+        $scope.getTitle = function(name) {
+            return taxonomySvc.getTitle(name);
+        };
+
+        $scope.setCurrentConstruct = function(idx) {
+            taxonomySvc.setCurrentConstruct(idx);
+        };
+
+        $scope.setCurrentSubconstruct = function(idx) {
+            taxonomySvc.setCurrentSubconstruct(idx);
         };
     }
 );

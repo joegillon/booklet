@@ -148,40 +148,83 @@ bookletApp.service("taxonomySvc", function($http) {
 
     var getGuide = function(selections) {
         if (selections === undefined || selections.length === 0) {
-            return {};
+            return [];
         }
-        var guide = _this.taxonomy;
 
-        for (var idx = 0; idx < selections.length; idx++) {
+        var tax = _this.taxonomy;
+        var curQuestion;
 
-            var indexes = selections[idx].split('_');
+        var guide = [];
+        var idx = 0;
+        var indexes = getIndexes(selections[idx]);
+        do {
+            var curDomainIdx = indexes.domainIdx;
+            var taxDomain = tax[curDomainIdx];
+            var curDomain = {
+                'name': taxDomain.name,
+                'constructs': []
+            };
+            guide.push(curDomain);
 
-            var domainIdx = parseInt(indexes[0]);
-            var constructIdx = parseInt(indexes[1]);
-            var subconstructIdx = 
-                    indexes[2] ? parseInt(indexes[2]) : -1;
-            var questionIdx = parseInt(indexes[3]);
+            do {
+                var curConstructIdx = indexes.constructIdx;
+                var taxConstruct = taxDomain.constructs[curConstructIdx];
+                var curConstruct = buildConstruct(taxConstruct);
+                curDomain.constructs.push(curConstruct);
 
-            var domain = guide[domainIdx];
-            domain.selected = true;
+                if (indexes.subconstructIdx != -1) {
+                    do {
+                        var curSubconstructIdx = indexes.subconstructIdx;
+                        var taxSubconstruct = taxConstruct.subconstructs[curSubconstructIdx];
+                        var curSubconstruct = buildConstruct(taxSubconstruct); 
+                        curConstruct.subconstructs.push(curSubconstruct);
+                        do {
+                            curQuestion = taxSubconstruct.questions[indexes.subconstructIdx];
+                            curSubconstruct.questions.push(curQuestion);
+                            idx++;
+                            if (idx < selections.length) {
+                                indexes = getIndexes(selections[idx]);
+                            }
+                        } while (idx < selections.length && indexes.subconstructIdx == curSubconstructIdx);
+                    } while (idx < selections.length && indexes.constructIdx == curConstructIdx);
+                } else {
+                    do {
+                        curQuestion = taxConstruct.questions[indexes.questionIdx];
+                        curConstruct.questions.push(curQuestion);
+                        idx++;
+                        if (idx < selections.length) {
+                            indexes = getIndexes(selections[idx]);
+                        }
+                    } while(idx < selections.length && indexes.constructIdx == curConstructIdx);
+                }
+            } while (idx < selections.length && indexes.domainIdx == curDomainIdx);
+        } while (idx < selections.length);
 
-            var construct = domain.constructs[constructIdx];
-            construct.selected = true;
-
-            var question;
-            if (subconstructIdx == -1) {
-                question = construct.questions[questionIdx];
-                question.selected = true;
-            } 
-            else {
-                var subconstruct = construct.subconstructs[subconstructIdx];
-                subconstruct.selected = true;
-                question = subconstruct.questions[questionIdx];
-                question.selected = true;
-            }
-
-        }
         return guide;
+    };
+
+    var getIndexes = function(selection) {
+        var indexes = selection.split('_');
+        return {
+            domainIdx: parseInt(indexes[0]),
+            constructIdx: parseInt(indexes[1]),
+            subconstructIdx: indexes[2] ? parseInt(indexes[2]) : -1,
+            questionIdx: parseInt(indexes[3])
+        };
+    };
+
+    var buildConstruct = function(taxConstruct) {
+        var myConstruct = {
+            'name': taxConstruct.name,
+            'questions': []
+        };
+        if ('intro' in taxConstruct) {
+            myConstruct.intro = taxConstruct.intro;
+        }
+        if ('guidelines' in taxConstruct) {
+            myConstruct.guidelines = taxConstruct.guidelines;
+        }
+        return myConstruct;
     };
 
     return {
