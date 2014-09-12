@@ -14,6 +14,13 @@
       </div>
       <div class="panel-body collapse" id="dmn_{{dmnIdx}}">
         <div class="panel-inner">
+          {{dmn.description}}
+          To learn more see the
+          <a href="{{wikiUrl(dmn.name)}}" target="_blank">wiki</a>.
+          <p>
+          <input type="checkbox" ng-model="dmn.selected">
+            &nbsp;&nbsp;Choose ALL questions in this domain.
+          <p>
           <div class="panel-group" id="dmn_{{dmnIdx}}_acc">
             <div class="panel panel-primary"
                 ng-repeat="(conIdx, con) in dmn.constructs">
@@ -35,11 +42,12 @@
                   <p>
                   <ol>
                     <li ng-repeat="question in con.questions">
+                      <input type="checkbox" ng-model="question.selected" />
                       {{question.text}}
                     </li>
                   </ol>
                   <input type="checkbox" ng-model="con.selected">
-                    &nbsp;&nbsp;Choose ALL questions.
+                    &nbsp;&nbsp;Choose ALL questions in this construct.
                   <p>
                   <div ng-show="con.subconstructs" class="panel-group"
                       id="con_{{dmnIdx}}_{{conIdx}}_acc">
@@ -64,11 +72,12 @@
                           <p>
                           <ol>
                             <li ng-repeat="question in sub.questions">
+                              <input type="checkbox" ng-model="question.selected" />
                               {{question.text}}
                             </li>
                           </ol>
                           <input type="checkbox" ng-model="sub.selected">
-                            &nbsp;&nbsp;Choose ALL questions.
+                            &nbsp;&nbsp;Choose ALL questions in this subconstruct.
                         </div>
                       </div>
                     </div>

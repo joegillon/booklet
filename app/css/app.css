@@ -4,7 +4,9 @@
     /*padding-left: 30px;*/
 /*}*/
 
-body{margin-top:50px;}
+body{
+    padding-top: 65px;
+}
 
 .glyphicon { margin-right:10px; }
 .panel-body { padding:0px; }
@@ -13,6 +15,9 @@ body{margin-top:50px;}
 
 .masthead {
     background-image: url("../img/headbg.jpg");
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 #wrapper {

@@ -146,60 +146,73 @@ bookletApp.service("taxonomySvc", function($http) {
         return result;
     };
 
-    var getGuide = function(selections) {
-        if (selections === undefined || selections.length === 0) {
-            return [];
-        }
-
-        var tax = _this.taxonomy;
-        var curQuestion;
-
+    var getGuide = function(selectedTaxonomy) {
         var guide = [];
-        var idx = 0;
-        var indexes = getIndexes(selections[idx]);
-        do {
-            var curDomainIdx = indexes.domainIdx;
-            var taxDomain = tax[curDomainIdx];
-            var curDomain = {
-                'name': taxDomain.name,
-                'constructs': []
-            };
-            guide.push(curDomain);
+        var qidx, question;
 
-            do {
-                var curConstructIdx = indexes.constructIdx;
-                var taxConstruct = taxDomain.constructs[curConstructIdx];
-                var curConstruct = buildConstruct(taxConstruct);
-                curDomain.constructs.push(curConstruct);
-
-                if (indexes.subconstructIdx != -1) {
-                    do {
-                        var curSubconstructIdx = indexes.subconstructIdx;
-                        var taxSubconstruct = taxConstruct.subconstructs[curSubconstructIdx];
-                        var curSubconstruct = buildConstruct(taxSubconstruct); 
-                        curConstruct.subconstructs.push(curSubconstruct);
-                        do {
-                            curQuestion = taxSubconstruct.questions[indexes.subconstructIdx];
-                            curSubconstruct.questions.push(curQuestion);
-                            idx++;
-                            if (idx < selections.length) {
-                                indexes = getIndexes(selections[idx]);
+        for (var dIdx=0; dIdx<selectedTaxonomy.length; dIdx++) {
+            var taxDomain = selectedTaxonomy[dIdx];
+            if (taxDomain.selected) {
+                guide.push(taxDomain);
+            } 
+            else {
+                var guideDomain = {
+                    name: taxDomain.name,
+                    constructs: []
+                };
+                for (var cIdx=0; cIdx<taxDomain.constructs.length; cIdx++) {
+                    var taxConstruct = taxDomain.constructs[cIdx];
+                    if (taxConstruct.selected) {
+                        guideDomain.constructs.push(taxConstruct);
+                    }
+                    else {
+                        var guideConstruct = {
+                            name: taxConstruct.name,
+                            questions: []
+                        };
+                        if (taxConstruct.questions) {
+                            for (qidx=0; qidx<taxConstruct.questions.length; qidx++) {
+                                question = taxConstruct.questions[qidx];
+                                if (question.selected) {
+                                    guideConstruct.questions.push(question);
+                                }
                             }
-                        } while (idx < selections.length && indexes.subconstructIdx == curSubconstructIdx);
-                    } while (idx < selections.length && indexes.constructIdx == curConstructIdx);
-                } else {
-                    do {
-                        curQuestion = taxConstruct.questions[indexes.questionIdx];
-                        curConstruct.questions.push(curQuestion);
-                        idx++;
-                        if (idx < selections.length) {
-                            indexes = getIndexes(selections[idx]);
                         }
-                    } while(idx < selections.length && indexes.constructIdx == curConstructIdx);
+                        if (taxConstruct.subconstructs) {
+                            guideConstruct.subconstructs = [];
+                            for (var sidx=0; sidx<taxConstruct.subconstructs.length; sidx++) {
+                                var taxSubconstruct = taxConstruct.subconstructs[sidx];
+                                if (taxSubconstruct.selected) {
+                                    guideConstruct.subconstructs.push(taxSubconstruct);
+                                }
+                                else {
+                                    var guideSubconstruct = {
+                                        name: taxSubconstruct.name,
+                                        questions: []
+                                    };
+                                    for (qidx=0; qidx<taxSubconstruct.questions.length; qidx++) {
+                                        question = taxSubconstruct.questions[qidx];
+                                        if (question.selected) {
+                                            guideSubconstruct.questions.push(question);
+                                        }
+                                    }
+                                    if (guideSubconstruct.questions.length > 0) {
+                                        guideConstruct.subconstructs.push(guideSubconstruct);
+                                    }
+                                }
+                            }
+                            if (guideConstruct.questions.length > 0 || 
+                                    guideConstruct.subconstructs.length > 0) {
+                                guideDomain.constructs.push(guideConstruct);
+                            }
+                        }
+                    }
                 }
-            } while (idx < selections.length && indexes.domainIdx == curDomainIdx);
-        } while (idx < selections.length);
-
+                if (guideDomain.constructs.length > 0) {
+                    guide.push(guideDomain);
+                }
+            }
+        }
         return guide;
     };
 

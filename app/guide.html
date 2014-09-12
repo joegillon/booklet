@@ -9,24 +9,22 @@
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../bower_components/angular/angular.js"></script>
   <script src="../bower_components/angular-route/angular-route.js"></script>
-  <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="../bower_components/angular-local-storage/angular-local-storage.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/services.js"></script>
-  <script src="data/taxonomy.js"></script>
-  <script src="http://localhost:9090/livereload.js"></script>
+  <script src="http://localhost:9091/livereload.js"></script>
 </head>
 <body>
 
   <div ng-controller="GuideCtrl" id="the_guide">
-    <span ng-repeat="domain in guide()" ng-show="domain.selected">
+    <span ng-repeat="domain in guide()">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h5>{{domain.name}}</h5>
         </div>
 
-        <div class="panel-body" ng-repeat="construct in domain.constructs"
-              ng-show="construct.selected">
+        <div class="panel-body" ng-repeat="construct in domain.constructs">
           <h6 class="panel-primary"><b>{{construct.name}}</b></h6>
           <p><i>{{construct.intro}}</i></p>
           <ul ng-repeat="guideline in construct.guidelines">
@@ -38,7 +36,7 @@
             </li>
           </ul>
           <ol>
-            <li ng-repeat="question in construct.questions" ng-show="question.selected">
+            <li ng-repeat="question in construct.questions">
               <p ng-repeat="guideline in question.guidelines">
                 <i>{{guideline.text}}</i>
               </p>
@@ -57,8 +55,7 @@
             </li>
           </ol>
 
-          <div class="panel-body" ng-repeat="subconstruct in construct.subconstructs"
-                ng-show="subconstruct.selected">
+          <div class="panel-body" ng-repeat="subconstruct in construct.subconstructs">
             <h6 class="panel-primary"><b>{{subconstruct.name}}</b></h6>
             <p><i>{{subconstruct.intro}}</i></p>
             <ul ng-repeat="guideline in subconstruct.guidelines">
@@ -70,7 +67,7 @@
               </li>
             </ul>
             <ol>
-              <li ng-repeat="question in subconstruct.questions" ng-show="question.selected">
+              <li ng-repeat="question in subconstruct.questions">
                 <p ng-repeat="guideline in question.guidelines">
                   <i>{{guideline.text}}</i>
                 </p>
