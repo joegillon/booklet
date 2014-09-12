@@ -1,5 +1,5 @@
 <div ng-controller="SelectionCtrl">
-
+  <h3>CFIR Domains</h3>
   <div class="panel-group" id="dmn_acc">
     <div class="panel panel-info"
         ng-repeat="(dmnIdx, dmn) in domains">
@@ -21,6 +21,7 @@
           <input type="checkbox" ng-model="dmn.selected">
             &nbsp;&nbsp;Choose ALL questions in this domain.
           <p>
+          <h4>Constructs</h4>
           <div class="panel-group" id="dmn_{{dmnIdx}}_acc">
             <div class="panel panel-primary"
                 ng-repeat="(conIdx, con) in dmn.constructs">
@@ -51,7 +52,7 @@
                   <p>
                   <div ng-show="con.subconstructs" class="panel-group"
                       id="con_{{dmnIdx}}_{{conIdx}}_acc">
-                    <h5>Subconstructs</h5>
+                    <h5><b>Subconstructs</b></h5>
                     <div class="panel panel-success"
                         ng-repeat="(subIdx, sub) in con.subconstructs">
                       <div class="panel-heading">
