@@ -5,18 +5,8 @@
   <title>CFIR Booklet</title>
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" href="css/bootstrap.css" />
-  <script src="../bower_components/jquery/dist/jquery.js"></script>
-  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="../bower_components/angular/angular.js"></script>
-  <script src="../bower_components/angular-route/angular-route.js"></script>
-  <script src="../bower_components/angular-local-storage/angular-local-storage.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/services.js"></script>
-  <script src="http://localhost:9091/livereload.js"></script>
 </head>
 <body>
-
   <div ng-controller="GuideCtrl" id="the_guide">
     <span ng-repeat="domain in guide()">
       <div class="panel panel-primary">
@@ -85,5 +75,15 @@
       </div>  <!-- panel-primary -->
     </span> <!-- domains -->
   </div>
+
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/angular-route.min.js"></script>
+  <script src="lib/angular-local-storage.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
+  <script src="http://localhost:9091/livereload.js"></script>
 </body>
 </html>
