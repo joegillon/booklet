@@ -1,5 +1,6 @@
 <div ng-controller="SelectionCtrl">
   <h3>CFIR Domains</h3>
+  <b>Click on a domain to see its constructs.</b>
   <div class="panel-group" id="dmn_acc">
     <div class="panel panel-info"
         ng-repeat="(dmnIdx, dmn) in domains">
@@ -17,7 +18,9 @@
           {{dmn.description}}
           To learn more see the
           <a href="{{wikiUrl(dmn.name)}}" target="_blank">wiki</a>.
-          <p>
+          <p><p>
+          To choose questions by construct, click on its name.
+          Or, you can<br> 
           <input type="checkbox" ng-model="dmn.selected">
             &nbsp;&nbsp;Choose ALL questions in this domain.
           <p>
@@ -53,6 +56,8 @@
                   <div ng-show="con.subconstructs" class="panel-group"
                       id="con_{{dmnIdx}}_{{conIdx}}_acc">
                     <h5><b>Subconstructs</b></h5>
+                    <p><p>
+                    To choose questions by subconstruct, click on its name.
                     <div class="panel panel-success"
                         ng-repeat="(subIdx, sub) in con.subconstructs">
                       <div class="panel-heading">
@@ -77,7 +82,7 @@
                               {{question.text}}
                             </li>
                           </ol>
-                          <input type="checkbox" ng-model="sub.selected">
+                           <input type="checkbox" ng-model="sub.selected">
                             &nbsp;&nbsp;Choose ALL questions in this subconstruct.
                         </div>
                       </div>

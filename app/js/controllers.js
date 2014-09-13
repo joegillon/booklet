@@ -5,6 +5,9 @@ var bookletApp = angular.module('bookletApp');
 bookletApp.controller('NavCtrl', 
     function($scope, localStorageService, theTaxonomy, taxonomySvc) {
 
+        taxonomySvc.setTaxonomy(theTaxonomy);
+        $scope.domains = taxonomySvc.getDomains();
+
         $scope.reset = function() {
             taxonomySvc.setTaxonomy(theTaxonomy);
             $scope.domains = taxonomySvc.getDomains();
@@ -15,9 +18,6 @@ bookletApp.controller('NavCtrl',
 
 bookletApp.controller('SelectionCtrl',
     function($scope, WIKI_URL, theTaxonomy, taxonomySvc) {
-        taxonomySvc.setTaxonomy(theTaxonomy);
-        $scope.domains = taxonomySvc.getDomains();
-
         $scope.wikiUrl = function(name) {
             return WIKI_URL + taxonomySvc.getTitle(name);
         };
