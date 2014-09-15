@@ -31,9 +31,10 @@ bookletApp.controller('GuideCtrl',
             localStorageService.set("selectedTaxonomy", taxonomySvc.getDomains());
         };
 
-        $scope.guide = function() {
+        $scope.loadGuide = function() {
             var selectedTaxonomy = localStorageService.get('selectedTaxonomy');
-            return taxonomySvc.getGuide(selectedTaxonomy);
+            $scope.guide = taxonomySvc.getGuide(selectedTaxonomy);
         };
+
     }
 );

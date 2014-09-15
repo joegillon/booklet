@@ -82,7 +82,8 @@ bookletApp.service("taxonomySvc", function($http) {
                     else {
                         var guideConstruct = {
                             name: taxConstruct.name,
-                            questions: []
+                            questions: [],
+                            subconstructs: []
                         };
                         if (taxConstruct.questions) {
                             for (qidx=0; qidx<taxConstruct.questions.length; qidx++) {
@@ -93,7 +94,6 @@ bookletApp.service("taxonomySvc", function($http) {
                             }
                         }
                         if (taxConstruct.subconstructs) {
-                            guideConstruct.subconstructs = [];
                             for (var sidx=0; sidx<taxConstruct.subconstructs.length; sidx++) {
                                 var taxSubconstruct = taxConstruct.subconstructs[sidx];
                                 if (taxSubconstruct.selected) {
@@ -115,10 +115,10 @@ bookletApp.service("taxonomySvc", function($http) {
                                     }
                                 }
                             }
-                            if (guideConstruct.questions.length > 0 || 
-                                    guideConstruct.subconstructs.length > 0) {
-                                guideDomain.constructs.push(guideConstruct);
-                            }
+                        }
+                        if (guideConstruct.questions.length > 0 || 
+                                guideConstruct.subconstructs.length > 0) {
+                            guideDomain.constructs.push(guideConstruct);
                         }
                     }
                 }
